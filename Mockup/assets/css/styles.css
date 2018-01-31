@@ -1,0 +1,13 @@
+#cover {
+  /*background-image:url(../../assets/img/bg.jpg);*/
+  background-position:inherit;
+  background-color:#FFFFFF;
+}
+
+#select_btn {
+}
+
+#runs {
+  padding-bottom:20px;
+}
+
