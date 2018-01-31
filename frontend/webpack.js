@@ -21,10 +21,10 @@ module.exports = {
         }
       },
       {
-        test: /\.css/,
-        use: [
-          {loader: 'style-loader'},
-          {loader: 'css-loader', options: {importLoaders: 1}}
+        test: /\.css$/,
+        loaders: [
+            'style',
+            'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap&-minimize'
         ]
       }
     ]
