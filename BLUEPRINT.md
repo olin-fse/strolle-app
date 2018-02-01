@@ -50,8 +50,11 @@ Team Goals: We want to a create well documented, easily scalable project that we
 
 ## Project Timeline
 Week 1: Define app functionality, UI, etc. Begin outlining API
+
 Week 2: Define all API requests, Build React components/modules
+
 Week 3: Buffer Week/Catch up
+
 Week 4-5: Integrate and continue feature development
 
 ## Risks
