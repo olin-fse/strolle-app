@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import Form from '../components/Form';
 import Tester from '../components/Tester';
 import Header from '../components/Header';
-import '../../css/App.css';
-import '../../css/Navigation.css';
+// import '../../css/App.css';
+// import './../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import './../../css/Navigation.css';
 
 class App extends Component {
     constructor(props) {
@@ -22,12 +23,12 @@ class App extends Component {
   render() {
     return (
         <div>
-            <div className="Navigation">
+            <div>
                 <Header />
             </div>
 
-            <div className="App">
-              <h1 className="App-title">Welcome to Shawty</h1>
+            <div>
+              <h1>Welcome to Shawty</h1>
             </div>
         </div>
     );
