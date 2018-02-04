@@ -5,6 +5,7 @@ import Tester from '../components/Tester';
 import Header from '../components/Header';
 import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
+import Bootom from '../components/Bottom';
 // import '../../css/App.css';
 // import './../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 // import './../../css/Navigation.css';
@@ -28,6 +29,7 @@ class App extends Component {
             <Header />
             <Cover />
             <Feed />
+            
 
 
         </div>
