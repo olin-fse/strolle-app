@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
@@ -36,5 +37,8 @@ module.exports = {
           loader: 'iocons-loader'
       }
     ]
-  }
+}
+
+  
+
 };
