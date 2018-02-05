@@ -26,10 +26,14 @@ module.exports = {
             {loader: 'style-loader'},
             {loader: 'css-loader', options: {importLoaders: 1}}
         ]
-    },
+      },
       {
           test: /\.(png|jpg)$/,
           loader: 'url-loader?limit=8192'
+      },
+      {
+          test: /\.svg$/,
+          loader: 'iocons-loader'
       }
     ]
   }
