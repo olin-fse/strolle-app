@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as api from './../API/api';
+// import * as api from './../API/api';
 
 class Form extends Component {
   shortenUrl = (e) => {

@@ -12,9 +12,9 @@ class Run_Feed extends React.Component {
         viewport: {
           width: this.props.containerWidth,
           height: 400,
-          latitude: 37.7577,
-          longitude: -122.4376,
-          zoom: 10
+          latitude: this.props.lat,
+          longitude: this.props.lng,
+          zoom: this.props.zoom
         }
       };
 
@@ -35,7 +35,7 @@ class Run_Feed extends React.Component {
                     onViewportChange={(viewport) => this.setState({viewport})}
                 />
                 <CardBody>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                  <CardText>{this.props.description}</CardText>
                   <Button color="primary">Card Link</Button>
                 </CardBody>
               </Card>

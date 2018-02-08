@@ -26,17 +26,31 @@ class App extends Component {
 
   render() {
     return (
-        <div className="container">
-            <Header />
-            <Cover />
+        <div>
+            <div className="container">
+                <Header />
+                <Cover />
 
-            <Feed city={"Boston"} title={"Sunrise Run"} lat={34} lng={5} zoom={1.5} />
-            <Feed city={"New York"} title={"Central Park Loop"} lat={34} lng={5} zoom={1.5} />
-
-
-            <Base />
-
-
+                <Feed
+                    city={"Boston"}
+                    title={"Sunrise Run"}
+                    description={"A quick morning run."}
+                    lat={42.36}
+                    lng={-71.06}
+                    zoom={10}
+                />
+                <Feed
+                    city={"New York"}
+                    title={"Central Park Loop"}
+                    description={"Scenic and pretty run through the park and around the lake."}
+                    lat={40.71}
+                    lng={-74.006}
+                    zoom={10}
+                />
+            </div>
+            <div>
+                <Base />
+            </div>
         </div>
     );
   }
