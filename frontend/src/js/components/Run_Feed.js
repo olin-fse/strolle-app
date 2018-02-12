@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
   CardTitle, CardLink, CardSubtitle, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import ReactMapGL from 'react-map-gl';
 import Dimensions from 'react-dimensions';
 
@@ -25,7 +26,7 @@ class Run_Feed extends React.Component {
             <div>
               <Card>
                 <CardBody>
-                  <CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle>
+                  <Link to='/paths/:{this.props.pathid}'><CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle></Link>
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
                 <ReactMapGL

@@ -6,25 +6,9 @@ import Header from '../components/Header';
 import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
 import Base from '../components/Base';
-// import '../../css/App.css';
-// import './../../../../node_modules/bootstrap/dist/css/bootstrap.css';
-// import './../../css/Navigation.css';
 
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-          shortenedUrl: ''
-        };
-      }
-
-      setUrl = (shortenedUrl) => {
-        this.setState({ shortenedUrl });
-      };
-
-  render() {
+const App = () => {
     return (
         <div>
             <div className="container">
@@ -32,6 +16,7 @@ class App extends Component {
                 <Cover />
 
                 <Feed
+                    pathid = {123}
                     city={"Boston"}
                     title={"Sunrise Run"}
                     description={"A quick morning run."}
@@ -40,6 +25,7 @@ class App extends Component {
                     zoom={10}
                 />
                 <Feed
+                    pathid = {2}
                     city={"New York"}
                     title={"Central Park Loop"}
                     description={"Scenic and pretty run through the park and around the lake."}
@@ -52,8 +38,27 @@ class App extends Component {
                 <Base />
             </div>
         </div>
-    );
-  }
+    )
 }
 
-export default App;
+const Path = () => {
+    return (
+        <div>
+            <Feed
+                pathid = {222}
+                city={"Boston"}
+                title={"Sunrise Run"}
+                description={"A quick morning run."}
+                lat={42.36}
+                lng={-71.06}
+                zoom={10}
+            />
+        </div>
+    )
+}
+
+
+module.exports = {
+    App,
+    Path
+};
