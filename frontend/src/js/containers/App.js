@@ -9,72 +9,76 @@ import Base from '../components/Base';
 import Create from '../components/Create_Run';
 
 
-const App = () => {
-    return (
-        <div>
-            <div className="container">
-                <Header />
-                <Cover />
-
-                <Feed
-                    pathid = {123}
-                    city={"Boston"}
-                    title={"Sunrise Run"}
-                    description={"A quick morning run."}
-                    lat={42.36}
-                    lng={-71.06}
-                    zoom={10}
-                />
-                <Feed
-                    pathid = {2}
-                    city={"New York"}
-                    title={"Central Park Loop"}
-                    description={"Scenic and pretty run through the park and around the lake."}
-                    lat={40.71}
-                    lng={-74.006}
-                    zoom={10}
-                />
-            </div>
+class App extends Component {
+    render() {
+        return (
             <div>
-                <Base />
+                <div className="container">
+                    <Header />
+                    <Cover />
+
+                    <Feed
+                        pathid = {123}
+                        city={"Boston"}
+                        title={"Sunrise Run"}
+                        description={"A quick morning run."}
+                        lat={42.36}
+                        lng={-71.06}
+                        zoom={10}
+                    />
+                    <Feed
+                        pathid = {2}
+                        city={"New York"}
+                        title={"Central Park Loop"}
+                        description={"Scenic and pretty run through the park and around the lake."}
+                        lat={40.71}
+                        lng={-74.006}
+                        zoom={10}
+                    />
+                </div>
+                <div>
+                    <Base />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
-const Path = ({ match }) => {
-    return (
-        <div>
-            <div className='container'>
-                <Header />
-                <h3>{match.params.id}</h3>
-                <Feed
-                    /*{Fetch path from DB }*/
-                    pathid = {match.params.id}
-                    city = {"Tester"}
-                    title = {"Tester"}
-                    description = {"Tester Run"}
-                    lat = {40.71}
-                    lng = {-74.006}
-                    zoom = {10}
-                />
-            </div>
+class Path extends Component {
+    render() {
+        return (
             <div>
-                <Base />
+                <div className='container'>
+                    <Header />
+                    <Feed
+                        pathid = {this.props.params.id}
+                        city={"New York"}
+                        title={"Central Park Loop"}
+                        description={"Scenic and pretty run through the park and around the lake."}
+                        lat={40.71}
+                        lng={-74.006}
+                        zoom={10}
+                    />
+                </div>
+                <div>
+                    <Base />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
-const Create_Path = ({}) => {
-    return (
-        <div>
-            <div className='container'>
-                <Header />
-                <Create />
+class Create_Path extends Component {
+    render() {
+        return (
+            <div>
+                <div className='container'>
+                    <Header />
+                    <Create />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 
