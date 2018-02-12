@@ -44,15 +44,12 @@ const App = () => {
 const Path = () => {
     return (
         <div>
-            <Feed
-                pathid = {222}
-                city={"Boston"}
-                title={"Sunrise Run"}
-                description={"A quick morning run."}
-                lat={42.36}
-                lng={-71.06}
-                zoom={10}
-            />
+            <div className='container'>
+                <Header />
+            </div>
+            <div>
+                <Base />
+            </div>
         </div>
     )
 }
