@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
 import Base from '../components/Base';
+import Create from '../components/Create_Run';
 
 
 const App = () => {
@@ -41,11 +42,22 @@ const App = () => {
     )
 }
 
-const Path = () => {
+const Path = ({ match }) => {
     return (
         <div>
             <div className='container'>
                 <Header />
+                <h3>{match.params.id}</h3>
+                <Feed
+                    /*{Fetch path from DB }*/
+                    pathid = {match.params.id}
+                    city = {"Tester"}
+                    title = {"Tester"}
+                    description = {"Tester Run"}
+                    lat = {40.71}
+                    lng = {-74.006}
+                    zoom = {10}
+                />
             </div>
             <div>
                 <Base />
@@ -54,8 +66,20 @@ const Path = () => {
     )
 }
 
+const Create_Path = ({}) => {
+    return (
+        <div>
+            <div className='container'>
+                <Header />
+                <Create />
+            </div>
+        </div>
+    )
+}
+
 
 module.exports = {
     App,
-    Path
+    Path,
+    Create_Path
 };

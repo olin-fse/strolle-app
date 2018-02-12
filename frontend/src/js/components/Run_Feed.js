@@ -26,7 +26,7 @@ class Run_Feed extends React.Component {
             <div>
               <Card>
                 <CardBody>
-                  <Link to='/paths/:{this.props.pathid}'><CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle></Link>
+                  <Link to={'paths/{this.props.pathid}'}><CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle></Link>
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
                 <ReactMapGL
@@ -37,6 +37,7 @@ class Run_Feed extends React.Component {
                 />
                 <CardBody>
                   <CardText>{this.props.description}</CardText>
+                  <CardText>ID: {this.props.pathid}</CardText>
                   <Button color="primary">Card Link</Button>
                 </CardBody>
               </Card>
