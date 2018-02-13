@@ -20,12 +20,6 @@ class Run_Feed extends React.Component {
         }
       };
 
-    if( this.props.clickable ) {
-        button = <Link href={`paths/${this.props.pathid}`}><Button color="primary">Learn More</Button></Link>;
-    } else {
-        button = <Link href={`/`}><Button outline color="primary">Return</Button></Link>;
-    }
-
     render() {
         const MapboxAccessToken = 'pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ';
 
@@ -45,7 +39,7 @@ class Run_Feed extends React.Component {
                 <CardBody>
                   <CardText>{this.props.description}</CardText>
                   <CardText>ID: {this.props.pathid}</CardText>
-                  {button}
+                  <Link href={`paths/${this.props.pathid}`}><Button color="primary">Learn More</Button></Link>;
                 </CardBody>
               </Card>
             </div>

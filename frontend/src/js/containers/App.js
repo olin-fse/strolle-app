@@ -19,7 +19,6 @@ class App extends Component {
 
                     <Feed
                         pathid = {123}
-                        clickable = {true}
                         city={"Boston"}
                         title={"Sunrise Run"}
                         description={"A quick morning run."}
@@ -29,7 +28,6 @@ class App extends Component {
                     />
                     <Feed
                         pathid = {2}
-                        clickable = {true}
                         city={"New York"}
                         title={"Central Park Loop"}
                         description={"Scenic and pretty run through the park and around the lake."}
@@ -54,7 +52,6 @@ class Path extends Component {
                     <Header />
                     <Feed
                         pathid = {this.props.params.id}
-                        clickable = {false}
                         city={"New York"}
                         title={"Central Park Loop"}
                         description={"Scenic and pretty run through the park and around the lake."}
