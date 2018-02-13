@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
-  CardTitle, CardLink, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardLink, CardSubtitle, Button, Form,
+    FormGroup, Label, Input, FormText} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactMapGL from 'react-map-gl';
 import Dimensions from 'react-dimensions';
@@ -13,9 +14,9 @@ class Create extends React.Component {
         viewport: {
           width: this.props.containerWidth,
           height: 400,
-          latitude: this.props.lat,
-          longitude: this.props.lng,
-          zoom: this.props.zoom
+          latitude: 51.5074,
+          longitude: -0.1278,
+          zoom: 12
         }
       };
 
@@ -24,12 +25,33 @@ class Create extends React.Component {
 
         return (
             <div>
-              <Card>
-                <CardBody>
-                    <CardTitle>Create a New Run</CardTitle>
-                    <CardSubtitle>Title</CardSubtitle>
-                </CardBody>
-              </Card>
+                <h1>Create a New Run</h1>
+                  <Card>
+                        <CardBody>
+                                <FormGroup>
+                                      <Label for="title">Title</Label>
+                                      <Input type="plaintext" name="title" id="title" />
+                                </FormGroup>
+                                <FormGroup>
+                                      <Label for="description">Description</Label>
+                                      <Input type="textarea" name="description" id="title" />
+                                </FormGroup>
+                                <Form inLine>
+                                    <FormGroup>
+                                          <Label for="citysearch">City</Label>
+                                          <Input type="search" name="search" id="citysearch" placeholder="Search" />
+                                    </FormGroup>
+                                    {''}
+                                    <Button color="success" type="submit">Search</Button>
+                                </Form>
+                        </CardBody>
+                        <ReactMapGL
+                            mapStyle="mapbox://styles/pseger/cjd9o709fa3ko2rnv0xz2lvnc"
+                            {...this.state.viewport}
+                            mapboxApiAccessToken = {MapboxAccessToken}
+                            onViewportChange={(viewport) => this.setState({viewport})}
+                        />
+                  </Card>
             </div>
         );
     }

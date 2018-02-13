@@ -5,9 +5,10 @@ import { Link } from 'react-router';
 import ReactMapGL from 'react-map-gl';
 import Dimensions from 'react-dimensions';
 
-
+var button;
 
 class Run_Feed extends React.Component {
+
 
     state = {
         viewport: {
@@ -19,6 +20,12 @@ class Run_Feed extends React.Component {
         }
       };
 
+    if( this.props.clickable ) {
+        button = <Link href={`paths/${this.props.pathid}`}><Button color="primary">Learn More</Button></Link>;
+    } else {
+        button = <Link href={`/`}><Button outline color="primary">Return</Button></Link>;
+    }
+
     render() {
         const MapboxAccessToken = 'pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ';
 
@@ -26,7 +33,7 @@ class Run_Feed extends React.Component {
             <div>
               <Card>
                 <CardBody>
-                  <Link to={`paths/${this.props.pathid}`}><CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle></Link>
+                  <CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle>
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
                 <ReactMapGL
@@ -38,7 +45,7 @@ class Run_Feed extends React.Component {
                 <CardBody>
                   <CardText>{this.props.description}</CardText>
                   <CardText>ID: {this.props.pathid}</CardText>
-                  <Button color="primary">Card Link</Button>
+                  {button}
                 </CardBody>
               </Card>
             </div>

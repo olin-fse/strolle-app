@@ -9,7 +9,7 @@ import './../css/Navigation.css';
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route path='/' component={App} />
-        <Route path='/paths/:id' component={Path} />
+        <Route exact path='/paths/:id' component={Path} />
         <Route path='/create' component={Create_Path} />
     </Router>,
     document.getElementById('root')
