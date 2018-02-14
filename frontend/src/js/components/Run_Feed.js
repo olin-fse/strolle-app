@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
   CardTitle, CardLink, CardSubtitle, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import ReactMapGL from 'react-map-gl';
 import Dimensions from 'react-dimensions';
 

@@ -3,7 +3,7 @@ import {
     Container,
     Jumbotron,
     Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 export default class Cover extends React.Component {
     render() {
