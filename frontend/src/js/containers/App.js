@@ -42,7 +42,7 @@ class App extends Component {
             </div>
         )
     }
-}
+};
 
 class Path extends Component {
     render() {
@@ -66,7 +66,7 @@ class Path extends Component {
             </div>
         )
     }
-}
+};
 
 class Create_Path extends Component {
     render() {
@@ -82,7 +82,7 @@ class Create_Path extends Component {
             </div>
         )
     }
-}
+};
 
 
 module.exports = {
