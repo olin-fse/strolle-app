@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@google/maps": "^0.4.5",
     "@mapbox/react-geocoder": "^2.5.0",
     "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
     CardTitle, CardLink, CardSubtitle, Button, Form,
-    FormGroup, Label, Input, FormText} from 'reactstrap';
+    FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 import { Link } from 'react-router';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
@@ -17,6 +17,19 @@ const Map = ReactMapboxGl({
 });
 
 class Create extends React.Component {
+    componentDidMount() {
+        this.map = new google.maps.Map(this.mapElement, {
+            zoom: 8,
+            center: {
+              lat: 51.5085300,
+              lng: -0.1257400
+            }
+        });
+    }
+
+    setMapElementReference(mapElementReference) {
+        this.mapElement = mapElementReference;
+    }
 
     state = {
         viewport: {
@@ -57,7 +70,9 @@ class Create extends React.Component {
                                     <Button color="success" type="submit">Search</Button>
                                 </Form>
                         </CardBody>
-                        <Map
+                        <Alert color="primary">Boston, Massachusetts</Alert>
+                        <div className='map' ref={this.setMapElementReference}></div>
+                        {/*<Map
                           style="mapbox://styles/mapbox/streets-v9"
                           center={[this.state.viewport.longitude, this.state.viewport.latitude]}
                           zoom={[this.state.viewport.zoom]}
@@ -72,6 +87,7 @@ class Create extends React.Component {
 
                             </Layer>
                         </Map>
+                        */}
                         {/*<Geocoder
                             accessToken= "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ"
                             onSelect={this.onSelect}
