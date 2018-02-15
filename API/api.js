@@ -1,18 +1,11 @@
 var express = require('express');
 var path = require('path');
-var morgan     = require('morgan');
-var bodyParser = require('body-parser');
+
 
 var mysql = require('mysql');
 
-// configure app
-app.use(morgan('dev')); // log requests to the console
 
-// configure body parser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-
+var router = express.Router();
 
 router.route('/paths')
     // Create a new paths.
@@ -20,7 +13,7 @@ router.route('/paths')
         console.log("Successfully POSTing")
     })
 
-router.router('/paths/:pathID')
+router.route('/paths/:pathID')
     // Get a path by ID
     .get(function(req, res) {
         console.log("Successfully GETing")
@@ -37,6 +30,7 @@ router.router('/paths/:pathID')
     })
 
 
+module.exports = router;
 
 
 
@@ -69,8 +63,7 @@ router.router('/paths/:pathID')
 
 
 
-
-
+/*
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -133,3 +126,5 @@ function fetch_path(id, output){
 var p = fetch_path(1, function(path));
 console.log(p);
 //console.log(p[0].title);
+
+*/
