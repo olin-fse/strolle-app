@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import Form from '../components/Form';
 import Tester from '../components/Tester';
 import Header from '../components/Header';
@@ -7,6 +8,7 @@ import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
 import Base from '../components/Base';
 import Create from '../components/Create_Run';
+
 
 
 class App extends Component {
@@ -69,6 +71,10 @@ class Path extends Component {
 }
 
 class Create_Path extends Component {
+    onSelect(value){
+        this.setState({value : value });
+    }
+
     render() {
         return (
             <div>

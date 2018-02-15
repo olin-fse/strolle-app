@@ -5,11 +5,15 @@ import { Component, Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
-var Geocoder = require('../');
 
+// var Geocoder = require('../');
+import Geocoder from '@mapbox/react-geocoder';
+
+
+const token = "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ";
 
 const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ"
+  accessToken: token
 });
 
 class Create extends React.Component {
@@ -21,12 +25,14 @@ class Create extends React.Component {
           latitude: 42.36,
           longitude: -71.06,
           zoom: 12
-        }
+      },
+      value: null
       };
 
-    temper(value){
-        this.setState({ value: value });
+    onSelect(value){
+        this.setState({value : value });
     }
+
 
     render() {
         return (
@@ -66,6 +72,11 @@ class Create extends React.Component {
 
                             </Layer>
                         </Map>
+                        {/*<Geocoder
+                            accessToken= "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ"
+                            onSelect={this.onSelect}
+                            showLoader={true}
+                        />*/}
 
                   </Card>
             </div>

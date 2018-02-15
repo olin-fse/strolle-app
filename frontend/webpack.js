@@ -35,10 +35,15 @@ module.exports = {
       {
           test: /\.svg$/,
           loader: 'iocons-loader'
+      },
+      {
+          test: /node_modules[\/\\]@mapbox[\/\\]react-geocoder[\/\\].*\.js/,
+           loader: 'babel-loader',
+           query: {presets:['react','es2015']}
       }
     ]
 }
 
-  
+
 
 };
