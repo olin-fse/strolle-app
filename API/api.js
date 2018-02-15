@@ -1,4 +1,76 @@
+var express = require('express');
+var path = require('path');
+var morgan     = require('morgan');
+var bodyParser = require('body-parser');
+
 var mysql = require('mysql');
+
+// configure app
+app.use(morgan('dev')); // log requests to the console
+
+// configure body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+
+router.route('/paths')
+    // Create a new paths.
+    .post(function(req, res) {
+        console.log("Successfully POSTing")
+    })
+
+router.router('/paths/:pathID')
+    // Get a path by ID
+    .get(function(req, res) {
+        console.log("Successfully GETing")
+    })
+
+    // Modify a path
+    .put(function(req, res) {
+        console.log("Successfully PUTing")
+    })
+
+    // Delete a path
+    .delete(function(req, res) {
+        console.log("Successfully DELETing")
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var con = mysql.createConnection({
   host: "localhost",
