@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
 
+import GoogleApiWrapper from './GoogleApiWrapper.js';
+
 var button;
 
 const Map = ReactMapboxGl({
@@ -34,21 +36,11 @@ class Run_Feed extends React.Component {
                   <CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle>
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
-                <Map
-                  style="mapbox://styles/mapbox/streets-v9"
-                  center={[this.props.lng, this.props.lat]}
-                  zoom={[12]}
-                  containerStyle={{
-                    height: 400,
-                    width: this.props.containerWidth
-                  }}>
-                    <Layer
-                      type="symbol"
-                      id="marker"
-
-                      layout={{ "icon-image": "marker-15" }}>
-                    </Layer>
-                </Map>
+                <GoogleApiWrapper
+                    zoom={this.state.viewport.zoom}
+                    lat={this.state.viewport.latitude}
+                    lng={this.state.viewport.longitude}
+                />
                 <CardBody>
                   <CardText>{this.props.description}</CardText>
                   <CardText>ID: {this.props.pathid}</CardText>
