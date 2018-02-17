@@ -3,18 +3,21 @@ import { Component, Card, CardImg, CardText, CardBody,
     CardTitle, CardLink, CardSubtitle, Button, Form,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 import { Link } from 'react-router';
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+// import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
 
+// import GoogleApiWrapper from './GoogleApiWrapper';
+
 // var Geocoder = require('../');
-import Geocoder from '@mapbox/react-geocoder';
+// import Geocoder from '@mapbox/react-geocoder';
 
 
 const token = "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ";
 
-const Map = ReactMapboxGl({
-  accessToken: token
-});
+// const Map = ReactMapboxGl({
+//   accessToken: token
+// });
+
 
 class Create extends React.Component {
     componentDidMount() {
@@ -25,10 +28,6 @@ class Create extends React.Component {
               lng: -0.1257400
             }
         });
-    }
-
-    setMapElementReference(mapElementReference) {
-        this.mapElement = mapElementReference;
     }
 
     state = {
@@ -71,7 +70,8 @@ class Create extends React.Component {
                                 </Form>
                         </CardBody>
                         <Alert color="primary">Boston, Massachusetts</Alert>
-                        <div className='map' ref={this.setMapElementReference}></div>
+                        <div className="map" ref={this.setMapElementReference}></div>
+                        {/*<div className='map' ref={this.setMapElementReference}></div>*/}
                         {/*<Map
                           style="mapbox://styles/mapbox/streets-v9"
                           center={[this.state.viewport.longitude, this.state.viewport.latitude]}
