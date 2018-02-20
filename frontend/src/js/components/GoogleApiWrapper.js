@@ -7,13 +7,13 @@ export class MapContainer extends React.Component {
 render() {
     return (
       <Map
-        google={this.props.google}
+        google={window.google}
         zoom={this.props.zoom}
         initialCenter={{
             lat: this.props.lat,
             lng: this.props.lng
         }}
-        style={{width: '100%', height: '500px', position: 'relative'}}
+        style={{width: '100%', height: '100px', position: 'relative'}}
       >
 
         <Marker onClick={this.onMarkerClick}

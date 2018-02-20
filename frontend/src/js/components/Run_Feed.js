@@ -9,9 +9,6 @@ import GoogleApiWrapper from './GoogleApiWrapper.js';
 
 var button;
 
-const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ"
-});
 
 class Run_Feed extends React.Component {
 
@@ -36,11 +33,14 @@ class Run_Feed extends React.Component {
                   <CardTitle tag="h2"><strong>{this.props.title}</strong></CardTitle>
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
+
+
                 <GoogleApiWrapper
                     zoom={this.state.viewport.zoom}
                     lat={this.state.viewport.latitude}
                     lng={this.state.viewport.longitude}
                 />
+
                 <CardBody>
                   <CardText>{this.props.description}</CardText>
                   <CardText>ID: {this.props.pathid}</CardText>
