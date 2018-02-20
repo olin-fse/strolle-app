@@ -10,58 +10,60 @@ var router = express.Router();
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
+        t = req.title;
+        loc = req.loc_name;
+        d = req.description;
+        lt = req.lat;
+        ln = req.long;
+        var path_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
+        con.connect(function(err) {
+          if (err) throw err;
+          con.query(path_insert, function (err, result) {
+            if (err) throw err;
+            console.log("1 record inserted");
+          });
+        });
         console.log("Successfully POSTing")
     })
 
 router.route('/paths/:pathID')
     // Get a path by ID
     .get(function(req, res) {
+        var id = req.id;
+        var path;
+        con.connect(function(err) {
+          if (err) throw err;
+          var path_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
+          con.query(path_get, function (err, result, fields) {
+            if (err) throw err;
+            path = result[0];
+            res.json(path)
+          });
+        });
         console.log("Successfully GETing")
     })
 
     // Modify a path
     .put(function(req, res) {
+
         console.log("Successfully PUTing")
     })
 
     // Delete a path
     .delete(function(req, res) {
+        con.connect(function(err) {
+          if (err) throw err;
+          var sql = `DELETE FROM paths WHERE ID = ${id}`;
+          con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Number of records deleted: " + result.affectedRows);
+          });
+        });
         console.log("Successfully DELETing")
     })
 
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 
