@@ -4,19 +4,19 @@ import { Component, Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
+import GMap from './Map';
 
 import GoogleApiWrapper from './GoogleApiWrapper.js';
 
-var button;
 
+
+var button;
 
 class Run_Feed extends React.Component {
 
 
     state = {
         viewport: {
-          width: this.props.containerWidth,
-          height: 400,
           latitude: this.props.lat,
           longitude: this.props.lng,
           zoom: this.props.zoom
@@ -34,12 +34,21 @@ class Run_Feed extends React.Component {
                   <CardSubtitle>{this.props.city}</CardSubtitle>
                 </CardBody>
 
-
-                <GoogleApiWrapper
+                <GMap
+                  isMarkerShown
+                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE"
+                  loadingElement={<div style={{ height: `100%` }} />}
+                  containerElement={<div style={{ height: `400px` }} />}
+                  mapElement={<div style={{ height: `100%` }} />}
+                  zoom={this.state.viewport.zoom}
+                  lat={this.state.viewport.latitude}
+                  lng={this.state.viewport.longitude}
+                />
+                {/*<GoogleApiWrapper
                     zoom={this.state.viewport.zoom}
                     lat={this.state.viewport.latitude}
                     lng={this.state.viewport.longitude}
-                />
+                />*/}
 
                 <CardBody>
                   <CardText>{this.props.description}</CardText>

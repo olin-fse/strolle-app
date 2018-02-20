@@ -26,7 +26,7 @@ class App extends Component {
                         description={"A quick morning run."}
                         lat={42.36}
                         lng={-71.06}
-                        zoom={10}
+                        zoom={12}
                     />
                     <Feed
                         pathid = {2}
@@ -35,7 +35,7 @@ class App extends Component {
                         description={"Scenic and pretty run through the park and around the lake."}
                         lat={40.71}
                         lng={-74.006}
-                        zoom={10}
+                        zoom={12}
                     />
                 </div>
                 <div>
@@ -59,7 +59,7 @@ class Path extends Component {
                         description={"Scenic and pretty run through the park and around the lake."}
                         lat={40.71}
                         lng={-74.006}
-                        zoom={10}
+                        zoom={12}
                     />
                 </div>
                 <div>

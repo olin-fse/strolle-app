@@ -5,8 +5,9 @@ import { Component, Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router';
 // import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
+import GMap from './Map';
+import PlacesWithStandaloneSearchBox from './Search';
 
-import GoogleApiWrapper from './GoogleApiWrapper.js';
 
 // var Geocoder = require('../');
 // import Geocoder from '@mapbox/react-geocoder';
@@ -30,7 +31,8 @@ class Create extends React.Component {
           longitude: -71.06,
           zoom: 12
       },
-      value: null
+      value: null,
+      city: "Boston"
       };
 
 
@@ -54,17 +56,25 @@ class Create extends React.Component {
                                           <Input type="search" name="search" id="citysearch" placeholder="Search" />
                                     </FormGroup>
                                     {''}
-                                    <Button color="success" type="submit">Search</Button>
+
+                                    <GMap
+                                      isMarkerShown
+                                      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE"
+                                      loadingElement={<div style={{ height: `100%` }} />}
+                                      containerElement={<div style={{ height: `400px` }} />}
+                                      mapElement={<div style={{ height: `100%` }} />}
+                                      zoom={this.state.viewport.zoom}
+                                      lat={this.state.viewport.latitude}
+                                      lng={this.state.viewport.longitude} />
+                                    {''}
+                                    <br></br>
+                                    <PlacesWithStandaloneSearchBox />
+                                    <br></br>
+                                    <Button color="primary" size="lg" block type="submit">Create Run!</Button>
                                 </Form>
                         </CardBody>
-                        <Alert color="primary">Boston, Massachusetts</Alert>
-                        <div style={{height: `100%`}}>
-                            <GoogleApiWrapper
-                                zoom={this.state.viewport.zoom}
-                                lat={this.state.viewport.latitude}
-                                lng={this.state.viewport.longitude}
-                            />
-                        </div>
+
+
                   </Card>
             </div>
         );
