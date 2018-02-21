@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import Dimensions from 'react-dimensions';
 import GMap from './Map';
 import PlacesWithStandaloneSearchBox from './Search';
+import MapWithASearchBox from './MapWithSearch';
 
 
 // var Geocoder = require('../');
@@ -51,10 +52,7 @@ class Create extends React.Component {
                                       <Input type="textarea" name="description" id="title" />
                                 </FormGroup>
                                 <Form inLine>
-                                    <FormGroup>
-                                          <Label for="citysearch">City</Label>
-                                          <Input type="search" name="search" id="citysearch" placeholder="Search" />
-                                    </FormGroup>
+                                    <PlacesWithStandaloneSearchBox label={"City"} />
                                     {''}
 
                                     <GMap
@@ -68,7 +66,6 @@ class Create extends React.Component {
                                       lng={this.state.viewport.longitude} />
                                     {''}
                                     <br></br>
-                                    <PlacesWithStandaloneSearchBox />
                                     <br></br>
                                     <Button color="primary" size="lg" block type="submit">Create Run!</Button>
                                 </Form>

@@ -6,10 +6,6 @@ import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
 import GMap from './Map';
 
-import GoogleApiWrapper from './GoogleApiWrapper.js';
-
-
-
 var button;
 
 class Run_Feed extends React.Component {
@@ -17,6 +13,7 @@ class Run_Feed extends React.Component {
 
     state = {
         viewport: {
+            width: this.props.containerWidth,
           latitude: this.props.lat,
           longitude: this.props.lng,
           zoom: this.props.zoom
@@ -44,11 +41,6 @@ class Run_Feed extends React.Component {
                   lat={this.state.viewport.latitude}
                   lng={this.state.viewport.longitude}
                 />
-                {/*<GoogleApiWrapper
-                    zoom={this.state.viewport.zoom}
-                    lat={this.state.viewport.latitude}
-                    lng={this.state.viewport.longitude}
-                />*/}
 
                 <CardBody>
                   <CardText>{this.props.description}</CardText>

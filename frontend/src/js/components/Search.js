@@ -1,6 +1,9 @@
+import React from 'react';
 import { compose, withProps, lifecycle } from "recompose";
 import { withScriptjs } from "react-google-maps";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
+import { Component, Form,
+    FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 
 const PlacesWithStandaloneSearchBox = compose(
   withProps({
@@ -35,22 +38,11 @@ const PlacesWithStandaloneSearchBox = compose(
       bounds={props.bounds}
       onPlacesChanged={props.onPlacesChanged}
     >
-      <input
-        type="text"
-        placeholder="Customized your placeholder"
-        style={{
-          boxSizing: `border-box`,
-          border: `1px solid transparent`,
-          width: `240px`,
-          height: `32px`,
-          padding: `0 12px`,
-          borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-          fontSize: `14px`,
-          outline: `none`,
-          textOverflow: `ellipses`,
-        }}
-      />
+
+        <FormGroup>
+              <Label for="citysearch">{props.label}</Label>
+              <Input type="text" name="search" id="citysearch" placeholder="Search" />
+        </FormGroup>
     </StandaloneSearchBox>
     <ol>
       {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
