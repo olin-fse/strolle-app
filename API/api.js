@@ -17,7 +17,9 @@ var con = mysql.createConnection({
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
-        console.log(req.body.key, req.body.name);
+        //path = JSON.parse(req.body)
+        //console.log(req.body.key, req.body.name);
+        res.send(req.body.name);
         // var t = req.title;
         // var loc = req.loc_name;
         // var d = req.description;
@@ -32,7 +34,6 @@ router.route('/paths')
           });
         });
         // console.log("Successfully POSTing")
-        res.send('hi');
     })
 
 router.route('/paths/:pathID')

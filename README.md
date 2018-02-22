@@ -20,4 +20,4 @@ SELECT User FROM mysql.user;
 exit;
 ```
 6. In command line, run schema file
-$ mysql schema.mysql
+$ mysql -u root < schema.mysql
