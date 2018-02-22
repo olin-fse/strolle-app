@@ -6,6 +6,8 @@ const GMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={props.zoom}
     defaultCenter={{ lat: props.lat, lng: props.lng }}
+
+    center={{ lat: props.lat, lng: props.lng }}
   >
     {props.isMarkerShown && <Marker position={{ lat: props.lat, lng: props.lng }} />}
   </GoogleMap>

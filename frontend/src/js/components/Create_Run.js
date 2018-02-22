@@ -32,13 +32,20 @@ class Create extends React.Component {
           zoom: 12
       },
       value: null,
-      city: "Boston",
       latitude: 42.36,
-      longitude: -71.06
-      };
+      longitude: -71.06,
+      city: "Boston, MA, USA",
+    };
 
-    setLatLng = (lat, lng) => {
-        console.log("Here")
+    setLatLng = (places) => {
+        console.log(places[0])
+        this.setState(
+            // {latitude: places.geometry.location.lat(), longitude: places.geometry.location.lng()}
+            {city: places[0].formatted_address,
+             latitude: places[0].geometry.location.lat(),
+             longitude: places[0].geometry.location.lng()
+            }
+        )
     }
 
     render() {
@@ -61,11 +68,12 @@ class Create extends React.Component {
                                         sendValues={this.setLatLng}
                                     />
                                     {''}
-                                    <p>{this.state.viewport.latitude}</p>
+                                    <Alert color="primary">{this.state.city}</Alert>
+
 
                                     <GMap
                                       isMarkerShown={true}
-                                      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE"
+                                      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE&v=3.exp&libraries=geometry,drawing,places"
                                       loadingElement={<div style={{ height: `100%` }} />}
                                       containerElement={<div style={{ height: `400px` }} />}
                                       mapElement={<div style={{ height: `100%` }} />}

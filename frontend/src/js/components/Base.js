@@ -29,7 +29,7 @@ export default class Base extends React.Component {
             <div>
                  <div style={phantom} />
                     <div style={style}>
-                        <p>&copy;2018 <a href="#">Strolle</a></p>
+                        <p>&copy;2018 <a href="/">Strolle</a></p>
                     </div>
              </div>
         );

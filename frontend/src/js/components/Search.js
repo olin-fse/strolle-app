@@ -22,6 +22,7 @@ const PlacesWithStandaloneSearchBox = compose(
         },
         onPlacesChanged: () => {
           const places = refs.searchBox.getPlaces();
+          this.props.sendValues(places);
 
           this.setState({
             places,
@@ -46,18 +47,7 @@ const PlacesWithStandaloneSearchBox = compose(
               <Input type="text" name="search" id="citysearch" placeholder="Search" />
         </FormGroup>
     </StandaloneSearchBox>
-    <ol>
-
-      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
-        <li key={place_id}>
-          {formatted_address}
-          {" at "}
-          ({location.lat()}, {location.lng()})
-        </li>
-
-      )}
-
-    </ol>
+    
   </div>
 );
 <PlacesWithStandaloneSearchBox />
