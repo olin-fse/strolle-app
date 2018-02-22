@@ -29,7 +29,9 @@ const PlacesWithStandaloneSearchBox = compose(
         },
       })
     },
+
   }),
+
   withScriptjs
 )(props =>
   <div data-standalone-searchbox="">
@@ -45,17 +47,21 @@ const PlacesWithStandaloneSearchBox = compose(
         </FormGroup>
     </StandaloneSearchBox>
     <ol>
+
       {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
         <li key={place_id}>
           {formatted_address}
           {" at "}
           ({location.lat()}, {location.lng()})
         </li>
+
       )}
+
     </ol>
   </div>
 );
-
 <PlacesWithStandaloneSearchBox />
+{/*this.props.sendValues(location.lat(), location.lng())*/}
+
 
 export default PlacesWithStandaloneSearchBox;
