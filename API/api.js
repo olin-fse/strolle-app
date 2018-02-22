@@ -17,29 +17,26 @@ var con = mysql.createConnection({
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
-        //path = JSON.parse(req.body)
-        //console.log(req.body.key, req.body.name);
-        res.send(req.body.name);
-        // var t = req.title;
-        // var loc = req.loc_name;
-        // var d = req.description;
-        // var lt = req.lat;
-        // var ln = req.long;
-        // var path_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
+        var path = req.body;
+        var t = path.title;
+        var loc = path.loc_name;
+        var d = path.description;
+        var lt = path.lat;
+        var ln = path.long;
+        var path_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.connect(function(err) {
           if (err) throw err;
           con.query(path_insert, function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            res.send("1 record inserted");
           });
         });
-        // console.log("Successfully POSTing")
     })
 
 router.route('/paths/:pathID')
     // Get a path by ID
     .get(function(req, res) {
-        var id = req.id;
+        var id = req.params.pathID;
         var path;
         con.connect(function(err) {
           if (err) throw err;
@@ -50,7 +47,6 @@ router.route('/paths/:pathID')
             res.json(path);
           });
         });
-        console.log("Successfully GETing")
     })
 
     // Modify a path

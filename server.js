@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-
+app.use('/api', router);          // Serve API requests
 
 app.use(express.static(__dirname +'/frontend/public/')); //serves the index.html
 
@@ -24,6 +24,5 @@ app.get('*', function(request, response) {
     response.sendFile(path.resolve(__dirname, 'frontend/public', 'index.html'))
 })
 
-app.use('/api', router);          // Serve API requests
 
 app.listen(3000); //listens on port 3000 -> http://localhost:3000/
