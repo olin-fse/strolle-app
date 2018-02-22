@@ -28,14 +28,18 @@ class Create extends React.Component {
         viewport: {
           width: this.props.containerWidth,
           height: 400,
-          latitude: 42.36,
-          longitude: -71.06,
+
           zoom: 12
       },
       value: null,
-      city: "Boston"
+      city: "Boston",
+      latitude: 42.36,
+      longitude: -71.06
       };
 
+    setLatLng = (lat, lng) => {
+        console.log("Here")
+    }
 
     render() {
         return (
@@ -52,18 +56,23 @@ class Create extends React.Component {
                                       <Input type="textarea" name="description" id="title" />
                                 </FormGroup>
                                 <Form inLine>
-                                    <PlacesWithStandaloneSearchBox label={"City"} />
+                                    <PlacesWithStandaloneSearchBox
+                                        label={"City"}
+                                        sendValues={this.setLatLng}
+                                    />
                                     {''}
+                                    <p>{this.state.viewport.latitude}</p>
 
                                     <GMap
-                                      isMarkerShown
+                                      isMarkerShown={true}
                                       googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE"
                                       loadingElement={<div style={{ height: `100%` }} />}
                                       containerElement={<div style={{ height: `400px` }} />}
                                       mapElement={<div style={{ height: `100%` }} />}
                                       zoom={this.state.viewport.zoom}
-                                      lat={this.state.viewport.latitude}
-                                      lng={this.state.viewport.longitude} />
+                                      lat={this.state.latitude}
+                                      lng={this.state.longitude}
+                                    />
                                     {''}
                                     <br></br>
                                     <br></br>

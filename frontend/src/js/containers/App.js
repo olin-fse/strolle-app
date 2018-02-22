@@ -8,6 +8,8 @@ import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
 import Base from '../components/Base';
 import Create from '../components/Create_Run';
+import Signup from '../components/Signup';
+import Login from '../components/Login';
 
 
 
@@ -90,9 +92,43 @@ class Create_Path extends Component {
     }
 }
 
+class signupComp extends Component {
+    render() {
+        return (
+            <div>
+                <div className='container'>
+                    <Header />
+                    <Signup />
+                </div>
+                <div>
+                    <Base />
+                </div>
+            </div>
+        )
+    }
+}
+
+class loginComp extends Component {
+    render() {
+        return (
+            <div>
+                <div className='container'>
+                    <Header />
+                    <Login />
+                </div>
+                <div>
+                    <Base />
+                </div>
+            </div>
+        )
+    }
+}
+
 
 module.exports = {
     App,
     Path,
-    Create_Path
+    Create_Path,
+    signupComp,
+    loginComp
 };
