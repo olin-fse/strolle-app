@@ -22,15 +22,10 @@ const token = "pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ
 
 
 class Create extends React.Component {
-
-
     state = {
-        viewport: {
-          width: this.props.containerWidth,
-          height: 400,
-
-          zoom: 12
-      },
+      width: this.props.containerWidth,
+      height: 400,
+      zoom: 12,
       value: null,
       latitude: 42.36,
       longitude: -71.06,
@@ -77,7 +72,7 @@ class Create extends React.Component {
                                       loadingElement={<div style={{ height: `100%` }} />}
                                       containerElement={<div style={{ height: `400px` }} />}
                                       mapElement={<div style={{ height: `100%` }} />}
-                                      zoom={this.state.viewport.zoom}
+                                      zoom={this.state.zoom}
                                       lat={this.state.latitude}
                                       lng={this.state.longitude}
                                     />
