@@ -17,16 +17,16 @@ var con = mysql.createConnection({
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
-        var path = req.body;
-        var t = path.title;
-        var loc = path.loc_name;
-        var d = path.description;
-        var lt = path.lat;
-        var ln = path.long;
-        var path_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
+        var walk = req.body;
+        var t = walk.title;
+        var loc = walk.loc_name;
+        var d = walk.description;
+        var lt = walk.lat;
+        var ln = walk.long;
+        var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.connect(function(err) {
           if (err) throw err;
-          con.query(path_insert, function (err, result) {
+          con.query(walk_insert, function (err, result) {
             if (err) throw err;
             res.send("1 record inserted");
           });
@@ -37,14 +37,14 @@ router.route('/paths/:pathID')
     // Get a path by ID
     .get(function(req, res) {
         var id = req.params.pathID;
-        var path;
+        var walk;
         con.connect(function(err) {
           if (err) throw err;
-          var path_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
-          con.query(path_get, function (err, result, fields) {
+          var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
+          con.query(walk_get, function (err, result, fields) {
             if (err) throw err;
-            path = result[0];
-            res.json(path);
+            walk = result[0];
+            res.json(walk);
           });
         });
     })
