@@ -17,9 +17,10 @@ var con = mysql.createConnection({
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
+        console.log(req.body);
         var walk = req.body;
         var t = walk.title;
-        var loc = walk.loc_name;
+        var loc = walk.location_name;
         var d = walk.description;
         var lt = walk.lat;
         var ln = walk.long;
@@ -31,6 +32,7 @@ router.route('/paths')
             res.send("1 record inserted");
           });
         });
+        res.redirect('/paths');
     })
 
 router.route('/paths/:pathID')

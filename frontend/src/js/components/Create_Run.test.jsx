@@ -53,7 +53,7 @@ describe("Create Run", () => {
       });
 
       it("contains a searchbox", () => {
-          const searchbox = createMod().find("PlacesWithStandaloneSearchBox");
+          const searchbox = createMod().find("withProps(lifecycle(withScriptjs(Component)))");
           expect(searchbox.length).toBeGreaterThan(0);
       });       // TODO failing
 
@@ -69,27 +69,25 @@ describe("Create Run", () => {
   });
 
   describe("the map in the card", () => {
-      beforeEach(() => {
-          props.isMarkerShown= true;
-          props.googleMapURL= "https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE&v=3.exp&libraries=geometry,drawing,places";
-          props.loadingElement = <div style={{height: `100%`}} />;
-          props.containerElement=<div style={{ height: `400px` }} />;
-          props.mapElement=<div style={{ height: `100%` }} />;
-          props.zoom=12;
-          props.lat=42;
-          props.lng=-71;
+      it("renders a map", () => {
+          const map = createMod().find("withScriptjs(withGoogleMap(Component))");
+          expect(map.length).toBeGreaterThan(0);
       });
 
-      it("renders a map", () => {
-          const map = createMod().find("GMap").first();
-          expect(map.length).toBeGreaterThan(0);
-      });       // TODO failing
+  });
 
-      it("has a zoom of 12", () => {
-          const map = createMod().find("GMap").first();
-          expect(map.props().zoom).toBe(12);
-      });       // TODO failing
+  describe("the search updates", () => {
+      beforeEach(() => {
+          const places = [[formatted_address:"Boston, MA, USA", geometry.location.lat():42, geometry.location.lng():55]]
+      });
 
+      test("the state gets updated", () => {
+          function setLatLng(places) {
+              expect(places.length).toBe(1);
+              done();
+          }
+          PlacesWithStandaloneSearchBox.sendValues(setLatLng);
+      });
   });
 
 

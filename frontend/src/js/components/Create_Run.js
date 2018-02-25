@@ -5,6 +5,7 @@ import { Component, Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router';
 import GMap from './Map';
 import PlacesWithStandaloneSearchBox from './Search';
+const request = require('superagent');
 
 
 
@@ -17,6 +18,7 @@ class Create extends React.Component {
 
               zoom: 12
           },
+          zoom: 12,
           value: null,
           city: "Boston, MA, USA",
           latitude: 42.36,
@@ -25,16 +27,37 @@ class Create extends React.Component {
     }
 
 
-    setLatLng(places) {
+    setLatLng = (places) => {
         console.log(places[0])
         this.setState(
-            // {latitude: places.geometry.location.lat(), longitude: places.geometry.location.lng()}
             {city: places[0].formatted_address,
              latitude: places[0].geometry.location.lat(),
              longitude: places[0].geometry.location.lng()
             }
         )
-    };
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("HERE");
+
+        let title = e.target[0].value;
+        let desc = e.target[1].value;
+        let search = e.target[2].value;
+
+        request
+            .post('/api/paths')
+            .send({
+                title: title,
+                description : desc,
+                location_name : search,
+                lat : this.state.latitude,
+                lng : this.state.longitude
+            })
+            .then(function(res) {
+                console.log(res);
+            });
+    }
 
     render() {
         return (
@@ -42,15 +65,16 @@ class Create extends React.Component {
                 <h1>Create a New Run</h1>
                   <Card>
                         <CardBody>
-                                <FormGroup>
-                                      <Label for="title">Title</Label>
-                                      <Input type="plaintext" name="title" id="title" />
-                                </FormGroup>
-                                <FormGroup>
-                                      <Label for="description">Description</Label>
-                                      <Input type="textarea" name="description" id="title" />
-                                </FormGroup>
-                                <Form inLine>
+                                <Form inLine onSubmit={this.handleSubmit}>
+                                    <FormGroup>
+                                          <Label for="title">Title</Label>
+                                          <Input type="plaintext" name="title" id="title" />
+                                    </FormGroup>
+                                    <FormGroup>
+                                          <Label for="description">Description</Label>
+                                          <Input type="textarea" name="description" id="description" />
+                                    </FormGroup>
+
                                     <PlacesWithStandaloneSearchBox
                                         label={"City"}
                                         sendValues={this.setLatLng}
@@ -64,7 +88,7 @@ class Create extends React.Component {
                                       loadingElement={<div style={{ height: `100%` }} />}
                                       containerElement={<div style={{ height: `400px` }} />}
                                       mapElement={<div style={{ height: `100%` }} />}
-                                      zoom={this.state.viewport.zoom}
+                                      zoom={this.state.zoom}
                                       lat={this.state.latitude}
                                       lng={this.state.longitude}
                                     />
