@@ -20,4 +20,7 @@ SELECT User FROM mysql.user;
 exit;
 ```
 6. In command line, run schema file
-$ mysql -u root < schema.mysql
+$ mysql -u root < schema.sql
+
+7. Also run the test schema file
+$ mysql -u root < test_schema.sql
