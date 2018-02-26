@@ -11,13 +11,12 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "strolle_app",
   password: "walk",
-  database: "strolle_db"
+  database: "strolle_test"
 });
 
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
-        console.log(req.body);
         var walk = req.body;
         var t = walk.title;
         var loc = walk.location_name;
@@ -27,7 +26,6 @@ router.route('/paths')
         var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.connect(function(err) {
           if (err) throw err;
-          console.log(walk_insert);
           con.query(walk_insert, function (err, result) {
             if (err) throw err;
             res.send("1 record inserted");
