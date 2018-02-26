@@ -11,7 +11,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "strolle_app",
   password: "walk",
-  database: "strolle_db"
+  database: "strolle_test"
 });
 
 router.route('/paths')
@@ -47,6 +47,7 @@ router.route('/paths/:pathID')
             if (err) throw err;
             walk = result[0];
             res.json(walk);
+            console.log(walk);
           });
         });
     })

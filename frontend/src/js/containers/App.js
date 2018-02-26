@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const request = require('superagent');
+
 
 import Form from '../components/Form';
 import Tester from '../components/Tester';
@@ -10,6 +12,8 @@ import Base from '../components/Base';
 import Create from '../components/Create_Run';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
+
+var Type = require('type-of-is');               //TODO remove before deploy
 
 
 
@@ -49,6 +53,24 @@ class App extends Component {
 }
 
 class Path extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        request
+            .get(`/api/paths/${props.params.id}`)
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    city : res.body.location_name,
+                    title : res.body.title,
+                    description : res.body.description,
+                    lat : res.body.latitude,
+                    lng : res.body.longitude
+                });
+                console.log((this.state.lat));
+            });
+    }
+
     render() {
         return (
             <div>
@@ -56,11 +78,11 @@ class Path extends Component {
                     <Header />
                     <Feed
                         pathid = {this.props.params.id}
-                        city={"New York"}
-                        title={"Central Park Loop"}
-                        description={"Scenic and pretty run through the park and around the lake."}
-                        lat={40.71}
-                        lng={-74.006}
+                        city={this.state.city}
+                        title={this.state.title}
+                        description={this.state.description}
+                        lat={this.state.lat}
+                        lng={this.state.lng}
                         zoom={12}
                     />
                 </div>
