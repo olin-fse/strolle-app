@@ -17,7 +17,6 @@ var con = mysql.createConnection({
 router.route('/paths')
     // Create a new paths.
     .post(function(req, res) {
-        console.log(req.body);
         var walk = req.body;
         var t = walk.title;
         var loc = walk.location_name;
@@ -27,7 +26,6 @@ router.route('/paths')
         var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.connect(function(err) {
           if (err) throw err;
-          console.log(walk_insert);
           con.query(walk_insert, function (err, result) {
             if (err) throw err;
             res.send("1 record inserted");
@@ -73,48 +71,3 @@ router.route('/paths/:pathID')
 
 
 module.exports = router;
-
-/*
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "strolle_app",
-  password: "walk",
-  database: "strolle_db"
-});
-
-
-function create_path(title, loc_name, description, lat, long) {
-  t = title;
-  loc = loc_name;
-  d = description;
-  lt = lat;
-  ln = long;
-  var path_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
-  con.connect(function(err) {
-    if (err) throw err;
-    con.query(path_insert, function (err, result) {
-      if (err) throw err;
-      console.log("1 record inserted");
-    });
-  });
-}
-
-function fetch_path(id, output){
-  var path;
-  con.connect(function(err) {
-    if (err) throw err;
-    var path_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
-    con.query(path_get, function (err, result, fields) {
-      if (err) throw err;
-      path = result[0];
-      output(path)
-    });
-  });
-}
-
-var p = fetch_path(1, function(path));
-console.log(p);
-//console.log(p[0].title);
-
-*/
