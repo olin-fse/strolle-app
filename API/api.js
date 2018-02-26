@@ -20,25 +20,16 @@ router.route('/paths')
         console.log(req.body);
         var walk = req.body;
         var t = walk.title;
-        // var loc = walk.location_name;
-        var loc = "New York"
+        var loc = walk.location_name;
         var d = walk.description;
         var lt = walk.lat;
         var ln = walk.lng;
-        var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES (${t}, ${loc}, ${d}, ${lt}, ${ln})`
-        var values = [
-            t,
-            loc,
-            d,
-            lt,
-            ln
-        ];
+        var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.connect(function(err) {
           if (err) throw err;
           console.log(walk_insert);
           con.query(walk_insert, function (err, result) {
-            if (err)
-                console.log("[mysql error]", err);     //throwing error here
+            if (err) throw err;
             res.send("1 record inserted");
           });
         });
