@@ -10,7 +10,6 @@ var button;
 
 class Run_Feed extends React.Component {
 
-
     state = {
         viewport: {
             width: this.props.containerWidth,
