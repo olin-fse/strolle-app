@@ -35,12 +35,14 @@
     "reactstrap": "5.0.0-beta",
     "sass-loader": "6.0.6",
     "style-loader": "0.20.1",
+    "superagent": "^3.8.2",
     "webpack": "3.10.0",
     "webpack-dev-middleware": "2.0.4",
     "webpack-dev-server": "2.11.1",
     "webpack-hot-middleware": "2.21.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "sinon": "^4.4.2"
   }
 }
