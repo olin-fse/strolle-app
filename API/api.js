@@ -45,7 +45,6 @@ router.route('/paths/:pathID')
             if (err) throw err;
             walk = result[0];
             res.json(walk);
-            console.log(walk);
           });
         });
     })
