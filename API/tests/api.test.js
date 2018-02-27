@@ -40,6 +40,20 @@ describe("post test", function() {
   });
 });
 
+describe("post test", function() {
+  it("checks that walk gets added to db", function() {
+    request
+        .post('/api/paths')
+        .send(example)
+        .then(function(res) {
+            expect(res).to.equal("1 record inserted");
+        }).catch(function () {
+            console.log("Reached the catch");
+        });
+  });
+});
+
+
 // {
 //     "title": "Common Stroll",
 //     "location_name": "Boston",
