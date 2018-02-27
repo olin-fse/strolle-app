@@ -9,19 +9,31 @@ import GMap from './Map';
 var button;
 
 class Run_Feed extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //     console.log(props);
+    //     this.state = {};
+    //     this.setState({
+    //         city : this.props.location_name,
+    //         title : this.props.title,
+    //         description : this.props.description,
+    //         lat : this.props.latitude,
+    //         lng : this.props.longitude
+    //     });
+    // }
 
-    state = {
-        viewport: {
-            width: this.props.containerWidth,
-          latitude: this.props.lat,
-          longitude: this.props.lng,
-          zoom: this.props.zoom
-        }
-      };
+
+    // state = {
+    //     viewport: {
+    //         width: this.props.containerWidth,
+    //       latitude: this.props.lat,
+    //       longitude: this.props.lng,
+    //       zoom: this.props.zoom,
+    //       pathid : this.props.pathid
+    //     }
+    //   };
 
     render() {
-        const MapboxAccessToken = 'pk.eyJ1IjoicHNlZ2VyIiwiYSI6ImNqZDlsMndiMjYxYWYyd24ycTVvaG1hbHoifQ.LVL_EXnvKNDCKGr-emYKQQ';
-
         return (
             <div>
               <Card>
@@ -36,9 +48,9 @@ class Run_Feed extends React.Component {
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={<div style={{ height: `400px` }} />}
                   mapElement={<div style={{ height: `100%` }} />}
-                  zoom={this.state.viewport.zoom}
-                  lat={this.state.viewport.latitude}
-                  lng={this.state.viewport.longitude}
+                  zoom={this.props.zoom}
+                  lat={this.props.lat}
+                  lng={this.props.lng}
                 />
 
                 <CardBody>

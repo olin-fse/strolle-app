@@ -65,9 +65,9 @@ class Path extends Component {
                     title : res.body.title,
                     description : res.body.description,
                     lat : res.body.latitude,
-                    lng : res.body.longitude
+                    lng : res.body.longitude,
+                    pathid : this.props.params.id
                 });
-                console.log((this.state.lat));
             });
     }
 
@@ -77,7 +77,7 @@ class Path extends Component {
                 <div className='container'>
                     <Header />
                     <Feed
-                        pathid = {this.props.params.id}
+                        pathid = {this.state.pathid}
                         city={this.state.city}
                         title={this.state.title}
                         description={this.state.description}
