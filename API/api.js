@@ -24,12 +24,9 @@ router.route('/paths')
         var lt = walk.lat;
         var ln = walk.lng;
         var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
-        con.connect(function(err) {
+        con.query(walk_insert, function (err, result) {
           if (err) throw err;
-          con.query(walk_insert, function (err, result) {
-            if (err) throw err;
-            res.send("1 record inserted");
-          });
+          res.send("1 record inserted");
         });
     })
 
@@ -38,14 +35,11 @@ router.route('/paths/:pathID')
     .get(function(req, res) {
         var id = req.params.pathID;
         var walk;
-        con.connect(function(err) {
+        var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
+        con.query(walk_get, function (err, result) {
           if (err) throw err;
-          var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
-          con.query(walk_get, function (err, result, fields) {
-            if (err) throw err;
-            walk = result[0];
-            res.json(walk);
-          });
+          walk = result[0];
+          res.json(walk);
         });
     })
 
@@ -57,13 +51,10 @@ router.route('/paths/:pathID')
 
     // Delete a path
     .delete(function(req, res) {
-        con.connect(function(err) {
+        var sql = `DELETE FROM paths WHERE ID = ${id}`;
+        con.query(sql, function (err, result) {
           if (err) throw err;
-          var sql = `DELETE FROM paths WHERE ID = ${id}`;
-          con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("Number of records deleted: " + result.affectedRows);
-          });
+          console.log("Number of records deleted: " + result.affectedRows);
         });
         console.log("Successfully DELETing")
     })
