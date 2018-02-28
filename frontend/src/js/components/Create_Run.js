@@ -55,6 +55,7 @@ class Create extends React.Component {
                 lng : this.state.longitude
             })
             .then(function(res) {
+                console.log("Result");
                 console.log(res);
             });
     }
