@@ -2,7 +2,7 @@ import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
     CardTitle, CardLink, CardSubtitle, Button, Form,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
-import { Link } from 'react-router';
+import { Link, Redirect, Route, browserHistory } from 'react-router';
 import GMap from './Map';
 import PlacesWithStandaloneSearchBox from './Search';
 const request = require('superagent');
@@ -22,7 +22,9 @@ class Create extends React.Component {
           value: null,
           city: "Boston, MA, USA",
           latitude: 42.36,
-          longitude: -71.06
+          longitude: -71.06,
+          redirect: false,
+          route: ""
       };
     }
 
@@ -54,13 +56,27 @@ class Create extends React.Component {
                 lat : this.state.latitude,
                 lng : this.state.longitude
             })
-            .then(function(res) {
-                console.log("Result");
-                console.log(res);
+            .then(res => {
+                console.log("Result: " + res.body.insertId);
+                console.log("Type: " + typeof res.body.insertId);
+                const route = "/paths/" + res.body.insertId;
+                console.log(route);
+                this.setState(
+                    {
+                        redirect: true,
+                        route: route
+                    }
+                );
+                // console.log(this.state);
             });
     }
 
     render() {
+        const redirect = this.state.redirect;
+        console.log(this.state);
+        if(redirect) {
+            return(<Redirect to={this.state.route}/>);
+        }
         return (
             <div>
                 <h1>Create a New Run</h1>

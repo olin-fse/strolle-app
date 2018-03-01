@@ -9,30 +9,6 @@ import GMap from './Map';
 var button;
 
 class Run_Feed extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     console.log(props);
-    //     this.state = {};
-    //     this.setState({
-    //         city : this.props.location_name,
-    //         title : this.props.title,
-    //         description : this.props.description,
-    //         lat : this.props.latitude,
-    //         lng : this.props.longitude
-    //     });
-    // }
-
-
-    // state = {
-    //     viewport: {
-    //         width: this.props.containerWidth,
-    //       latitude: this.props.lat,
-    //       longitude: this.props.lng,
-    //       zoom: this.props.zoom,
-    //       pathid : this.props.pathid
-    //     }
-    //   };
-
     render() {
         return (
             <div>

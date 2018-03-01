@@ -27,14 +27,7 @@ router.route('/paths')
         var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
         con.query(walk_insert, function (err, result) {
           if (err) throw err;
-          con.query(`SELECT LAST_INSERT_ID();`, function(err, result) {
-              if (err) throw err;
-              console.log("RES: " + result[0].body);
-              id = result;
-          });
-          console.log("1 record inserted");
-          console.log("ID: " + id);
-          res.send(id);
+          res.send(result);
         });
     })
 
