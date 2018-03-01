@@ -34,5 +34,11 @@ app.listen(3000); //listens on port 3000 -> http://localhost:3000/
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("DB connected")
+  console.log("DB connected");
+});
+
+// listen for INT signal e.g. Ctrl-C
+process.on ('SIGINT', function() {
+  con.end();
+  console.log("DB disconnected");
 });
