@@ -95,10 +95,6 @@ class Path extends Component {
 }
 
 class Create_Path extends Component {
-    onSelect(value){
-        this.setState({value : value });
-    }
-
     render() {
         return (
             <div>

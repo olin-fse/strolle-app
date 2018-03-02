@@ -2,7 +2,7 @@ import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
     CardTitle, CardLink, CardSubtitle, Button, Form,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
-import { Link, Redirect, Route, browserHistory } from 'react-router';
+import { Link, Redirect, Route, Router, browserHistory } from 'react-router';
 import GMap from './Map';
 import PlacesWithStandaloneSearchBox from './Search';
 const request = require('superagent');
@@ -56,33 +56,37 @@ class Create extends React.Component {
                 lat : this.state.latitude,
                 lng : this.state.longitude
             })
-            .then(res => {
+            .then(function(res) {
                 console.log("Result: " + res.body.insertId);
                 console.log("Type: " + typeof res.body.insertId);
                 const route = "/paths/" + res.body.insertId;
                 console.log(route);
-                this.setState(
-                    {
-                        redirect: true,
-                        route: route
-                    }
-                );
+                // this.setState(
+                //     {
+                //         redirect: true,
+                //         route: route
+                //     }
+                // );
                 // console.log(this.state);
             });
     }
 
     render() {
-        const redirect = this.state.redirect;
-        console.log(this.state);
-        if(redirect) {
-            return(<Redirect to={this.state.route}/>);
-        }
+        // const redirect = this.state.redirect;
+        // console.log(this.state);
+        // if(redirect) {
+        //     return(
+        //         <Router>
+        //             <Redirect to={this.state.route}/>
+        //         </Router>
+        //     );
+        // }
         return (
             <div>
                 <h1>Create a New Run</h1>
                   <Card>
                         <CardBody>
-                                <Form inLine onSubmit={this.handleSubmit}>
+                                <Form onSubmit={this.handleSubmit}>
                                     <FormGroup>
                                           <Label for="title">Title</Label>
                                           <Input type="plaintext" name="title" id="title" />
@@ -101,7 +105,7 @@ class Create extends React.Component {
 
                                     <GMap
                                       isMarkerShown={true}
-                                      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE&v=3.exp&libraries=geometry,drawing,places"
+                                      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_asy-3A0f-RszG3SmR8lpWpsFmdFLsQA&v=3.exp&libraries=geometry,drawing,places"
                                       loadingElement={<div style={{ height: `100%` }} />}
                                       containerElement={<div style={{ height: `400px` }} />}
                                       mapElement={<div style={{ height: `100%` }} />}

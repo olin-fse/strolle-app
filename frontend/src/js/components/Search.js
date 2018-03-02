@@ -7,7 +7,7 @@ import { Component, Form,
 
 const PlacesWithStandaloneSearchBox = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCvGWiDsRg9t8L_4EKFMfLvcHmosedcEhE&v=3.exp&libraries=geometry,drawing,places",
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD_asy-3A0f-RszG3SmR8lpWpsFmdFLsQA&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
   }),
@@ -47,7 +47,7 @@ const PlacesWithStandaloneSearchBox = compose(
               <Input type="text" name="search" id="citysearch" placeholder="Search" />
         </FormGroup>
     </StandaloneSearchBox>
-    
+
   </div>
 );
 <PlacesWithStandaloneSearchBox />
