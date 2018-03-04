@@ -26,7 +26,7 @@ class App extends Component {
                     <Cover />
 
                     <Feed
-                        pathid = {123}
+                        pathid = {1}
                         city={"Boston"}
                         title={"Sunrise Run"}
                         description={"A quick morning run."}
@@ -59,7 +59,7 @@ class Path extends Component {
         request
             .get(`/api/paths/${props.params.id}`)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 this.setState({
                     city : res.body.location_name,
                     title : res.body.title,

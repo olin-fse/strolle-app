@@ -7,6 +7,8 @@ import GMap from './Map';
 import PlacesWithStandaloneSearchBox from './Search';
 const request = require('superagent');
 
+import { Path } from './../containers/App'
+
 
 
 class Create extends React.Component {
@@ -30,7 +32,7 @@ class Create extends React.Component {
 
 
     setLatLng = (places) => {
-        console.log(places[0])
+        // console.log(places[0])
         this.setState(
             {city: places[0].formatted_address,
              latitude: places[0].geometry.location.lat(),
@@ -41,7 +43,7 @@ class Create extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("HERE");
+        // console.log("HERE");
 
         let title = e.target[0].value;
         let desc = e.target[1].value;
@@ -56,31 +58,32 @@ class Create extends React.Component {
                 lat : this.state.latitude,
                 lng : this.state.longitude
             })
-            .then(function(res) {
-                console.log("Result: " + res.body.insertId);
-                console.log("Type: " + typeof res.body.insertId);
+            .then((res) => {
+                // console.log("Result: " + res.body.insertId);
+                // console.log("Type: " + typeof res.body.insertId);
                 const route = "/paths/" + res.body.insertId;
-                console.log(route);
-                // this.setState(
-                //     {
-                //         redirect: true,
-                //         route: route
-                //     }
-                // );
+                // console.log(route);
+                this.setState(
+                    {
+                        redirect: true,
+                        route: route
+                    }
+                )
                 // console.log(this.state);
             });
     }
 
     render() {
-        // const redirect = this.state.redirect;
-        // console.log(this.state);
-        // if(redirect) {
-        //     return(
-        //         <Router>
-        //             <Redirect to={this.state.route}/>
-        //         </Router>
-        //     );
-        // }
+        const redirect = this.state.redirect;
+        // console.log("First: " + this.state);
+        if(redirect) {
+            return(
+                <Router history={browserHistory}>
+                    <Redirect from='/create' to={this.state.route}/>
+                    <Route path='/paths/:pathid' component={Path}/>
+                </Router>
+            );
+        }
         return (
             <div>
                 <h1>Create a New Run</h1>
