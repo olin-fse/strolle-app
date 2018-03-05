@@ -7,12 +7,18 @@ const expect = chai.expect;
 var router = express.Router();
 const request = require('superagent');
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "strolle_app",
-//   password: "walk",
-//   database: "strolle_test"
-// });
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "strolle_app",
+  password: "walk",
+  database: "strolle_test"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("DB connected");
+});
+
 var example = {
     title: "Walk in the park",
     description : "This was fun",
@@ -29,24 +35,38 @@ describe("smoke test", function() {
 
 describe("post test", function() {
   it("checks that walk gets added to db", function() {
+
     request
         .post('/api/paths')
         .send(example)
         .then(function(res) {
-            expect(res).to.equal("1 record inserted");
+             expect(res).to.equal("1 record inserted");
         }).catch(function () {
-            console.log("Reached the catch");
+             console.log("Reached the catch");
         });
   });
 });
 
-describe("post test", function() {
-  it("checks that walk gets added to db", function() {
+describe("get test", function() {
+  it("checks that a specific id returns the right walk", function() {
+    var id = null;
+    var walk = example;
+    var t = walk.title;
+    var loc = walk.location_name;
+    var d = walk.description;
+    var lt = walk.lat;
+    var ln = walk.lng;
+    var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
+    con.query(walk_insert, function (err, result) {
+      if (err) throw err;
+      id = result.insertId;
+    });
+    req = `/paths/${id}`
     request
-        .post('/api/paths')
-        .send(example)
+        .post(req)
         .then(function(res) {
-            expect(res).to.equal("1 record inserted");
+            console.log(res);
+            expect(res).to.equal(example);
         }).catch(function () {
             console.log("Reached the catch");
         });
