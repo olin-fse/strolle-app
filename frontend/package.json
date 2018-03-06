@@ -46,6 +46,8 @@
     "babel-jest": "^20.0.3",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "chai-webdriverio": "^0.4.3",
     "enzyme": "^3.3.0",
     "google-maps": "^3.2.1",
     "jest": "^20.0.4",
