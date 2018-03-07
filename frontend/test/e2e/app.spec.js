@@ -25,4 +25,11 @@ describe('strolle app', function() {
         var pageUrl = browser.getUrl();
         assert.equal(pageUrl, 'http://localhost:3000/create');
     });
+
+    if('can submit a new run', function() {
+        browser.url('http://localhost:3000/create');
+        browser.setValue('input[id="title"]', 'Tester Run');
+        browser.setValue('input[id="description"]', "This is a description");
+        browser.setValue('')
+    });
 });
