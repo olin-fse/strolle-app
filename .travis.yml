@@ -1,0 +1,18 @@
+language: node_js
+
+npm:
+  - "7.5"
+
+env:
+  global:
+    -
+
+services:
+  - mysql
+
+before_install:
+  - mysql -u root --password="" < test_schema.sql
+
+install:
+  - npm install
+  - cd frontend/ && npm install && cd ..
