@@ -1,7 +1,8 @@
 language: node_js
 
-npm:
-  - "7.5"
+node_js:
+  - "node"
+  - "9.4.0"
 
 env:
   global:
