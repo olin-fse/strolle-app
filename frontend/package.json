@@ -35,7 +35,7 @@
   "scripts": {
     "watch": "webpack -d --config webpack.js --watch",
     "build": "webpack -p --config webpack.js",
-    "test": "jest",
+    "test": "jest ./src/js/components/Create_Run.test.jsx",
     "e2e": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "devDependencies": {

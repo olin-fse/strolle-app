@@ -4,7 +4,7 @@ import * as enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 enzyme.configure({adapter: new Adapter() });
-import Create from "./Create_Run";
+import Create from "./Create_Run.js";
 
 describe("Create Run", () => {
   let mountedCreate;
