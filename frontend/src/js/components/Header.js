@@ -41,10 +41,10 @@ export default class Header extends React.Component {
                 </Nav>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink href="/login"><Button outline color="primary">Login</Button></NavLink>
+                        <NavLink href="/login"><Button outline color="primary" id="login">Login</Button></NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/signup"><Button color="primary">Sign Up</Button></NavLink>
+                        <NavLink href="/signup"><Button color="primary" id="signup">Sign Up</Button></NavLink>
                     </NavItem>
                 </Nav>
               </Collapse>

@@ -4,7 +4,6 @@ const request = require('superagent');
 
 
 import Form from '../components/Form';
-import Tester from '../components/Tester';
 import Header from '../components/Header';
 import Cover from '../components/Cover';
 import Feed from '../components/Run_Feed';
@@ -20,7 +19,7 @@ var Type = require('type-of-is');               //TODO remove before deploy
 class App extends Component {
     render() {
         return (
-            <div>
+            <div className="App">
                 <div className="container">
                     <Header />
                     <Cover />
@@ -97,7 +96,7 @@ class Path extends Component {
 class Create_Path extends Component {
     render() {
         return (
-            <div>
+            <div className="Create">
                 <div className='container'>
                     <Header />
                     <Create />

@@ -2,7 +2,6 @@ import React from 'react';
 import { Component, Card, CardImg, CardText, CardBody,
   CardTitle, CardLink, CardSubtitle, Button } from 'reactstrap';
 import { Link } from 'react-router';
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
 import GMap from './Map';
 
