@@ -1,35 +1,20 @@
 var express = require('express');
 var path = require('path');
-
-
 var mysql = require('mysql');
-
+var PathService = require('./PathService');
 
 var router = express.Router();
+var service = new PathService();
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "strolle_app",
-  password: "walk",
-  database: "strolle_test"
-});
+router.route('/paths').post(function(req, res) {
+  service.createPath(req.body, function(err) {
+    if (err != null) {
+      return res.sendStatus(400);
+    }
 
-router.route('/paths')
-    // Create a new paths.
-    .post(function(req, res) {
-        var walk = req.body;
-        var t = walk.title;
-        var loc = walk.location_name;
-        var d = walk.description;
-        var lt = walk.lat;
-        var ln = walk.lng;
-        var id = null;
-        var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
-        con.query(walk_insert, function (err, result) {
-          if (err) throw err;
-          res.send(result);
-        });
-    })
+    res.json({ status: '1 record inserted' });
+  });
+})
 
 router.route('/paths/:pathID')
     // Get a path by ID
