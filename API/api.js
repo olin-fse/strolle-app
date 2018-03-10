@@ -11,23 +11,20 @@ router.route('/paths').post(function(req, res) {
     if (err != null) {
       return res.sendStatus(400);
     }
-
     res.json({ status: '1 record inserted' });
   });
 })
 
-router.route('/paths/:pathID')
-    // Get a path by ID
-    .get(function(req, res) {
-        var id = req.params.pathID;
-        var walk;
-        var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
-        con.query(walk_get, function (err, result) {
-          if (err) throw err;
-          walk = result[0];
-          res.json(walk);
-        });
-    })
+router.route('/paths/:pathID').get(function(req, res) {
+    service.getPathByID(req.body, function(cb) {
+      if (cb == err) {
+        return res.sendStatus(400);
+      }
+      else {
+        res.json(res);
+      }
+    });
+})
 
     // Modify a path
     .put(function(req, res) {
@@ -47,3 +44,14 @@ router.route('/paths/:pathID')
 
 
 module.exports = router;
+
+// .get(function(req, res) {
+//     var id = req.params.pathID;
+//     var walk;
+//     var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
+//     con.query(walk_get, function (err, result) {
+//       if (err) throw err;
+//       walk = result[0];
+//       res.json(walk);
+//     });
+// })
