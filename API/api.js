@@ -17,7 +17,6 @@ router.route('/paths').post(function(req, res) {
 
 router.route('/paths/:pathID').get(function(req, res) {
     service.getPathByID(req.params.pathID, function(cb) {
-        console.log(cb);
       if (cb == null) {
         return res.sendStatus(400);
       }
@@ -26,11 +25,6 @@ router.route('/paths/:pathID').get(function(req, res) {
       }
     });
 })
-
-    // Modify a path
-    .put(function(req, res) {
-        console.log("Successfully PUTing")
-    })
 
 router.route('/paths/:pathID').delete(function(req, res) {
   service.deletePath(req.params.pathID, function(err) {

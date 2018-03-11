@@ -58,7 +58,6 @@ class Path extends Component {
         request
             .get(`/api/paths/${props.params.id}`)
             .then(res => {
-                console.log(res);
                 this.setState({
                     city : res.body.location_name,
                     title : res.body.title,
