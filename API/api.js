@@ -16,12 +16,12 @@ router.route('/paths').post(function(req, res) {
 })
 
 router.route('/paths/:pathID').get(function(req, res) {
-    service.getPathByID(req.params.pathID, function(cb) {
-      if (cb == err) {
+    service.getPathByID(req.params.pathID, function(err, result) {
+      if (err != null) {
         return res.sendStatus(400);
       }
       else {
-        res.json(res);
+        res.json(result);
       }
     });
 })
