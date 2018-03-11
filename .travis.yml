@@ -12,7 +12,7 @@ services:
   - mysql
 
 before_install:
-  - mysql -u root --password="" < test_schema.sql
+  - mysql -u strolle_app --password="walk" < test_schema.sql
 
 install:
   - npm install
