@@ -21,15 +21,17 @@ PathService.prototype.createPath = function(data, cb) {
 
 PathService.prototype.getPathByID = function(id, cb) {
   var stmt = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID =` + id;
+  console.log(stmt);
   this.con.query(stmt, function(err, result) {
-    if (err) cb(err);
-    cb(result[0]);
+    console.log(err, result);
+    if (err) return cb(err, null);
+    console.log(result[0]);
+    cb(null, result[0]);
   });
 }
 
 PathService.prototype.deletePath = function(id, cb) {
   var stmt = `DELETE FROM paths WHERE ID =` + id;
-  console.log(id);
   this.con.query(stmt, function(err, result) {
     if (err) cb(err);
     cb(null);
