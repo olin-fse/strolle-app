@@ -1,0 +1,43 @@
+.app {
+  text-align: center;
+}
+
+.title {
+  margin-top: 150px;
+  font-size: 1.5em;
+}
+
+.form {
+}
+
+.form input[type="url"] {
+  width: 450px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.form input[type="submit"] {
+  height: 30px;
+  font-size: 14px;
+  width: 150px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.form input[type="submit"]:active {
+  background: black;
+  color: white;
+}
+
+.result {
+  margin-top: 100px;
+  font-size: 18px;
+  color: lightseagreen;
+  font-family: monospace;
+}
+.tester{
+    color: red;
+}
