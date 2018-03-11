@@ -31,7 +31,7 @@ describe('/api/paths', function() {
   it('/GET /api/paths', async function() {
     try {
       const res = await request(app).post('/api/paths').send(example);
-      expect(res.body.status).to.equal('1 record inserted');
+      expect(res.body.status).to.not.equal(null);
       expect(res.statusCode).to.equal(200);
     } catch (ex) {
       throw ex;
