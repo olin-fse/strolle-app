@@ -38,7 +38,7 @@ describe('/api/paths', function() {
     }
   });
 
-  it("checks that a specific id returns the right walk", function() {
+  it('/POST /api/paths/:pathID', function() {
     var t = example.title;
     var loc = example.location_name;
     var d = example.description;

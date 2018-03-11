@@ -39,8 +39,5 @@ router.route('/paths/:pathID').delete(function(req, res) {
     res.json({ status: "Number of records deleted: " + result.affectedRows});
   });
 })
-    // Delete a path
-
-
 
 module.exports = router;
