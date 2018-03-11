@@ -8,20 +8,21 @@ var service = new PathService();
 
 router.route('/paths').post(function(req, res) {
   service.createPath(req.body, function(err) {
-    if (err != null) {
+    if (err == null) {
       return res.sendStatus(400);
     }
-    res.json({ status: '1 record inserted' });
+    res.json(err);
   });
 })
 
 router.route('/paths/:pathID').get(function(req, res) {
     service.getPathByID(req.params.pathID, function(cb) {
-      if (cb == err) {
+        console.log(cb);
+      if (cb == null) {
         return res.sendStatus(400);
       }
       else {
-        res.json(res);
+        return res.json(cb);
       }
     });
 })
