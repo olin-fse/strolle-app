@@ -60,4 +60,14 @@ describe('/api/paths', function() {
       testFn(result.insertId);
     });
   });
+
+  it('/DELETE /api/paths/:pathID', async function() {
+    try {
+      const res = await request(app).delete('/api/paths/1');
+      expect(res.body.status).to.equal("1 row deleted");
+      expect(res.statusCode).to.equal(200);
+    } catch (ex) {
+      throw ex;
+    }
+  });
 });

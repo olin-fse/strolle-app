@@ -16,7 +16,7 @@ router.route('/paths').post(function(req, res) {
 })
 
 router.route('/paths/:pathID').get(function(req, res) {
-    service.getPathByID(req.body, function(cb) {
+    service.getPathByID(req.params.pathID, function(cb) {
       if (cb == err) {
         return res.sendStatus(400);
       }
@@ -32,11 +32,11 @@ router.route('/paths/:pathID').get(function(req, res) {
     })
 
 router.route('/paths/:pathID').delete(function(req, res) {
-  service.deletePath(req.body, function(err) {
+  service.deletePath(req.params.pathID, function(err) {
     if (err != null) {
       return res.sendStatus(400);
     }
-    res.json({ status: "Number of records deleted: " + result.affectedRows});
+    res.json({ status: '1 row deleted'});
   });
 })
 
