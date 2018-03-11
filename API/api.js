@@ -28,7 +28,6 @@ router.route('/paths/:pathID').get(function(req, res) {
 
     // Modify a path
     .put(function(req, res) {
-
         console.log("Successfully PUTing")
     })
 
@@ -44,14 +43,3 @@ router.route('/paths/:pathID').get(function(req, res) {
 
 
 module.exports = router;
-
-// .get(function(req, res) {
-//     var id = req.params.pathID;
-//     var walk;
-//     var walk_get = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID = ${id}`;
-//     con.query(walk_get, function (err, result) {
-//       if (err) throw err;
-//       walk = result[0];
-//       res.json(walk);
-//     });
-// })
