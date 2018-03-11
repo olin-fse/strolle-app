@@ -31,14 +31,14 @@ describe('/api/paths', function() {
   it('/GET /api/paths', async function() {
     try {
       const res = await request(app).post('/api/paths').send(example);
-      expect(res.body.status).to.equal('1 record inserted');
+      expect(res.body.status).to.not.equal(null);
       expect(res.statusCode).to.equal(200);
     } catch (ex) {
       throw ex;
     }
   });
 
-  it("checks that a specific id returns the right walk", function() {
+  it('/POST /api/paths/:pathID', function() {
     var t = example.title;
     var loc = example.location_name;
     var d = example.description;
@@ -59,5 +59,15 @@ describe('/api/paths', function() {
       if (err) throw err;
       testFn(result.insertId);
     });
+  });
+
+  it('/DELETE /api/paths/:pathID', async function() {
+    try {
+      const res = await request(app).delete('/api/paths/1');
+      expect(res.body.status).to.equal("1 row deleted");
+      expect(res.statusCode).to.equal(200);
+    } catch (ex) {
+      throw ex;
+    }
   });
 });

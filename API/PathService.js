@@ -14,8 +14,23 @@ PathService.prototype.createPath = function(data, cb) {
     `("${data.title}", "${data.location_name}", "${data.description}", ${data.lat}, ${data.lng})`;
   this.con.query(stmt, function(err, result) {
     if (err) cb(err);
-    cb(null);
+    cb(result);
   });
 }
 
+PathService.prototype.getPathByID = function(id, cb) {
+  var stmt = `SELECT title, location_name, description, latitude, longitude FROM paths WHERE ID =` + id;
+  this.con.query(stmt, function(err, result) {
+    if (err) return cb(err);
+    cb(result[0]);
+  });
+}
+
+PathService.prototype.deletePath = function(id, cb) {
+  var stmt = `DELETE FROM paths WHERE ID =` + id;
+  this.con.query(stmt, function(err, result) {
+    if (err) cb(err);
+    cb(null);
+  });
+}
 module.exports = PathService;

@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  - "node"
   - "9.4.0"
 
 env:
@@ -17,3 +16,13 @@ before_install:
 install:
   - npm install
   - cd frontend/ && npm install && cd ..
+
+addons:
+  chrome: stable
+
+script:
+  - cd frontend/ && npm run build && cd ..
+  - node server.js &
+  - npm run test
+
+sudo: required
