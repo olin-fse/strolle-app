@@ -31,15 +31,16 @@ router.route('/paths/:pathID').get(function(req, res) {
         console.log("Successfully PUTing")
     })
 
+router.route('/paths/:pathID').delete(function(req, res) {
+  service.deletePath(req.body, function(err) {
+    if (err != null) {
+      return res.sendStatus(400);
+    }
+    res.json({ status: "Number of records deleted: " + result.affectedRows});
+  });
+})
     // Delete a path
-    .delete(function(req, res) {
-        var sql = `DELETE FROM paths WHERE ID = ${id}`;
-        con.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("Number of records deleted: " + result.affectedRows);
-        });
-        console.log("Successfully DELETing")
-    })
+
 
 
 module.exports = router;

@@ -25,4 +25,12 @@ PathService.prototype.getPathByID = function(data, cb) {
     cb(result[0]);
   });
 }
+
+PathService.prototype.deletePath = function(data, cb) {
+  var stmt = `DELETE FROM paths WHERE ID =` + data.pathID;
+  this.con.query(stmt, function(err, result) {
+    if (err) cb(err);
+    cb(result.affectedRows);
+  });
+}
 module.exports = PathService;
