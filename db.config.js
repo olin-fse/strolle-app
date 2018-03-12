@@ -6,7 +6,12 @@ module.exports = function(NODE_ENV) {
         password: 'walk',
         database: 'strolle_test'
       };
-
+    case 'PROD': return {
+        host: '35.231.72.92',
+        user: 'strolle-db',
+        password: 'walk',
+        database: 'strolle_db'
+      };
     default: return {
         host: 'localhost',
         user: 'strolle_app',
