@@ -8,7 +8,7 @@ module.exports = function(NODE_ENV) {
       };
     case 'PROD': return {
         host: '35.231.72.92',
-        user: 'strolle-db',
+        user: 'strolle_app',
         password: 'walk',
         database: 'strolle_db'
       };

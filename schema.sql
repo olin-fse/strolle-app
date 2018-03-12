@@ -1,3 +1,5 @@
+CREATE USER 'strolle_app'@'localhost' IDENTIFIED BY 'walk';
+GRANT ALL PRIVILEGES ON *.* TO 'strolle_app'@'localhost' WITH GRANT OPTION;
 CREATE DATABASE strolle_db;
 USE strolle_db;
 CREATE TABLE paths (ID int NOT NULL AUTO_INCREMENT,
