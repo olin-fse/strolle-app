@@ -7,7 +7,9 @@
     "node": ">=7.5.0"
   },
   "scripts": {
-    "test": "mocha ./API/tests/ --exit",
+    "test": "npm run test-integration && npm run test-e2e",
+    "test-integration": "mocha ./API/tests/ --exit",
+    "test-e2e": "cd frontend && node_modules/.bin/wdio travis_wdio.conf.js",
     "dev": "webpack-dev-server --hot --inline",
     "start": "nodemon server.js"
   },
