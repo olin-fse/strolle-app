@@ -2,6 +2,7 @@ var mysql = require('mysql');
 
 function PathService() {
   this.con = mysql.createConnection({
+    port: "3306",
     host: "35.231.72.92",
     user: "strolle_app",
     password: "walk",
