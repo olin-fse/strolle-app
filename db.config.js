@@ -1,5 +1,5 @@
 module.exports = function(NODE_ENV) {
-  switch (NODE_ENV) {
+  switch (process.env.NODE_ENV) {
     case 'TEST': return {
         host: 'localhost',
         user: 'strolle_app',
@@ -8,8 +8,8 @@ module.exports = function(NODE_ENV) {
       };
     case 'PROD': return {
         host: '35.231.72.92',
-        user: 'strolle_app',
-        password: 'walk',
+        user: 'root',
+        password: '',
         database: 'strolle_db'
       };
     default: return {

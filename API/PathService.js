@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 function PathService() {
   this.con = mysql.createConnection({
-    host: "localhost",
+    host: "35.231.72.92",
     user: "strolle_app",
     password: "walk",
-    database: "strolle_test"
+    database: "strolle_db"
   });
 }
 
