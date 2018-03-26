@@ -1,13 +1,41 @@
 var mysql = require('mysql');
 
 function PathService() {
-  this.con = mysql.createConnection({
-    port: "3306",
-    host: "35.231.72.92",
-    user: "strolle_app",
-    password: "walk",
-    database: "strolle_db"
-  });
+    switch (process.env.NODE_ENV) {
+        case 'TEST':
+            this.con = mysql.createConnection({
+                port: '3306',
+                host: 'localhost',
+                user: 'strolle_app',
+                password: 'walk',
+                database: 'strolle_test'
+            });
+            break;
+        case 'PROD':
+            this.con = mysql.createConnection({
+                port: '3306',
+                host: '35.231.72.92',
+                user: 'root',
+                password: '',
+                database: 'strolle_db'
+            });
+            break;
+        default:
+            this.con = mysql.createConnection({
+                port: '3306',
+                host: 'localhost',
+                user: 'strolle_app',
+                password: 'walk',
+                database: 'strolle_test'
+            });
+    }
+  // this.con = mysql.createConnection({
+  //   port: "3306",
+  //   host: "localhost",
+  //   user: "strolle_app",
+  //   password: "walk",
+  //   database: "strolle_test"
+  // });
 }
 
 PathService.prototype.createPath = function(data, cb) {
