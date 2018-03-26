@@ -7,5 +7,5 @@ CREATE TABLE paths (ID int NOT NULL AUTO_INCREMENT,
   longitude FLOAT(50,25),
   primary key (ID)
 );
-CREATE USER 'strolle_app'@'localhost' IDENTIFIED BY 'walk';
+CREATE USER 'strolle_app_test'@'localhost' IDENTIFIED BY 'walk';
 GRANT ALL PRIVILEGES ON *.* TO 'strolle_app'@'localhost' WITH GRANT OPTION;
