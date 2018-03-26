@@ -13,10 +13,10 @@ module.exports = function(NODE_ENV) {
         database: 'strolle_db'
       };
     default: return {
-        host: 'localhost',
-        user: 'strolle_app',
-        password: 'walk',
-        database: 'strolle_test' // TODO change this
+        host: '35.231.72.92',
+        user: 'root',
+        password: '',
+        database: 'strolle_db' // TODO change this
       };
   }
 };
