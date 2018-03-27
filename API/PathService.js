@@ -23,10 +23,10 @@ function PathService() {
         default:
             this.con = mysql.createConnection({
                 port: '3306',
-                host: 'localhost',
-                user: 'strolle_app',
-                password: 'walk',
-                database: 'strolle_test'
+                host: '35.231.72.92',
+                user: 'root',
+                password: '',
+                database: 'strolle_db'
             });
     }
   // this.con = mysql.createConnection({
