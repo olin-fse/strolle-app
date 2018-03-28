@@ -15,6 +15,12 @@ var example = {
   lng : 23.99
 };
 
+var example_user = {
+  name : "Billy Bob",
+  description : "I like my farm",
+  photo: "cow.png"
+}
+
 var db;
 
 describe('/api/paths', function() {

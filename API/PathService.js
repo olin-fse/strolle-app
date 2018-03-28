@@ -1,13 +1,7 @@
 var mysql = require('mysql');
-var dbconfig = require('../db.config');
+var dbconfig = require('../db.config.js')(process.env.NODE_ENV);
 function PathService() {
-  this.con = mysql.createConnection({ //change to nodeenv
-    port: "3306",
-    host: 'localhost', // dbconfig.host
-    user: 'strolle_app_test', // dbconfig.user
-    password: 'walk', // dbconfig.password
-    database: 'strolle_test' // dbconfig.database
-  });
+  this.con = mysql.createConnection(dbconfig);
 }
 
 PathService.prototype.createPath = function(data, cb) {
