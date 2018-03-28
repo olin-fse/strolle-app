@@ -14,7 +14,7 @@ module.exports = function(NODE_ENV) {
       };
     default: return {
         host: 'localhost',
-        user: 'strolle_app',
+        user: 'strolle_app_test',
         password: 'walk',
         database: 'strolle_test' // TODO change this
       };

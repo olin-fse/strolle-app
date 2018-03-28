@@ -34,5 +34,13 @@ router.route('/paths/:pathID').delete(function(req, res) {
     res.json({ status: '1 row deleted'});
   });
 })
-
+//pls restart
+router.route('/users').post(function(req, res) {
+  service.createUser(req.body, function(err) {
+    if (err == null) {
+      return res.sendStatus(400);
+    }
+    res.json(err);
+  });
+})
 module.exports = router;

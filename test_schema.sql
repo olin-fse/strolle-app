@@ -8,4 +8,4 @@ CREATE TABLE paths (ID int NOT NULL AUTO_INCREMENT,
   primary key (ID)
 );
 CREATE USER 'strolle_app_test'@'localhost' IDENTIFIED BY 'walk';
-GRANT ALL PRIVILEGES ON *.* TO 'strolle_app'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'strolle_app_test'@'localhost' WITH GRANT OPTION;
