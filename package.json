@@ -11,7 +11,8 @@
     "test-integration": "mocha ./API/tests/ --exit",
     "test-e2e": "cd frontend && node_modules/.bin/wdio travis_wdio.conf.js",
     "dev": "webpack-dev-server --hot --inline",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "start-dev": "NODE_ENV=TEST nodemon server.js"
   },
   "author": "",
   "license": "ISC",

@@ -28,7 +28,7 @@ app.get('*', function(request, response) {
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("DB connected");
+  console.log("DB connected to " + process.env.NODE_ENV);
 });
 
 app.close = function() {
