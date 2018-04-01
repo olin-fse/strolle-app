@@ -9,6 +9,7 @@ env:
 
 services:
   - mysql
+  - docker
 
 before_install:
   - mysql -u root --password="" < test_schema.sql
