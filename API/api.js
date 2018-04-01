@@ -35,4 +35,14 @@ router.route('/paths/:pathID').delete(function(req, res) {
   });
 })
 
+router.route('/users/:userID').get(function(req, res) {
+    service.getUserByID(req.params.userID, function(cb) {
+        if(cb == null) {
+            return res.sendStatus(400);
+        } else {
+            return res.json(cb);
+        }
+    });
+})
+
 module.exports = router;

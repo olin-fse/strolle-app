@@ -20,7 +20,8 @@ export default class Header extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      isLoggedIn: this.props.loggedIn
     };
   }
   toggle() {
@@ -29,6 +30,14 @@ export default class Header extends React.Component {
     });
   }
   render() {
+      var loggedInButton;
+      var signUpButton;
+      if(this.state.isLoggedIn) {
+          loggedInButton = <NavLink href="/login"><Button outline color="primary" id="login">Logout</Button></NavLink>;
+      } else {
+          loggedInButton = <NavLink href="/login"><Button outline color="primary" id="login">Login</Button></NavLink>;
+          signUpButton = <NavLink href="/signup"><Button color="primary" id="signup">Sign Up</Button></NavLink>;
+      }
     return (
       <div>
         <Navbar color="faded" light expand="md">
@@ -41,10 +50,10 @@ export default class Header extends React.Component {
                 </Nav>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink href="/login"><Button outline color="primary" id="login">Login</Button></NavLink>
+                        {loggedInButton}
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/signup"><Button color="primary" id="signup">Sign Up</Button></NavLink>
+                        {signUpButton}
                     </NavItem>
                 </Nav>
               </Collapse>
