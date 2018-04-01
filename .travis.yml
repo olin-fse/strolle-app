@@ -21,9 +21,9 @@ addons:
   chrome: stable
 
 script:
+  - sudo docker pull olinfse/strolle
+  - sudo docker run -p 3000:3000 -d olinfse/strolle
   - cd frontend/ && npm run build && cd ..
-  - export NODE_ENV=TEST
-  - node server.js &
   - npm run test
 
 sudo: required
