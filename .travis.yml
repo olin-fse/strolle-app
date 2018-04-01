@@ -13,18 +13,19 @@ services:
 
 before_install:
   - mysql -u root --password="" < test_schema.sql
-
-install:
-  - npm install
-  - cd frontend/ && npm install && cd ..
+  - sudo docker build -t olinfse/strolle .
+  - sudo docker run -d -p 3000:3000 -d olinfse/strolle
+  - sudo docker run olinfse/strolle /bin/bash -c "npm run test"
 
 addons:
   chrome: stable
 
 script:
-  - sudo docker pull olinfse/strolle
-  - sudo docker run -p 3000:3000 -d olinfse/strolle
-  - cd frontend/ && npm run build && cd ..
-  - npm run test
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
 
 sudo: required
