@@ -14,12 +14,14 @@ export default class Cover extends React.Component {
             lastname: "Seger",
             currentTab: 1
         };
+
     }
 
-    changeTab = (tab) => {
-        tab.preventDefault();
-        console.log(tab);
-        this.setState({currentTab: this.tab})
+    changeTab = (e) => {
+        e.preventDefault();
+        console.log('The link was clicked.');
+        console.log(e);
+        this.setState({currentTab: this.state.currentTab+1})
     }
 
 
@@ -35,13 +37,13 @@ export default class Cover extends React.Component {
                     <div id="nav">
                         <Nav tabs>
                             <NavItem>
-                              <Button onClick={this.changeTab(1)} color="link"><NavLink href="#" active>Link</NavLink></Button>
+                              <NavLink href="#" active onClick={this.changeTab}>Link</NavLink>
                             </NavItem>
                             <NavItem>
-                              <Button onClick={this.changeTab(2)} color="link"><NavLink href="#">Link</NavLink></Button>
+                              <NavLink href="#" onClick={this.changeTab}>Link</NavLink>
                             </NavItem>
                             <NavItem>
-                              <Button onClick={this.changeTab(3)} color="link"><NavLink href="#">Another Link</NavLink></Button>
+                              <NavLink href="#" onClick={this.changeTab}>Another Link</NavLink>
                             </NavItem>
                         </Nav>
                     </div>
