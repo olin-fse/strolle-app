@@ -4,6 +4,8 @@ import { Alert, Media, Container, Row, Col, Nav,
     DropdownToggle, DropdownMenu, Button } from 'reactstrap';
 import { Link } from 'react-router';
 
+import User_Feed from './User_Accounts/feed';
+
 export default class Cover extends React.Component {
     constructor(props) {
         super(props);
@@ -17,15 +19,62 @@ export default class Cover extends React.Component {
 
     }
 
-    changeTab = (e) => {
+    // changeTab = (e) => {
+    //     e.preventDefault();
+    //     console.log('The link was clicked.');
+    //     console.log(e);
+    //     this.setState({currentTab: this.state.currentTab+1})
+    // }
+
+    tab1 = (e) => {
         e.preventDefault();
-        console.log('The link was clicked.');
-        console.log(e);
-        this.setState({currentTab: this.state.currentTab+1})
+        this.setState({currentTab: 1})
+    }
+    tab2 = (e) => {
+        e.preventDefault();
+        this.setState({currentTab: 2})
+    }
+    tab3 = (e) => {
+        e.preventDefault();
+        this.setState({currentTab: 3})
     }
 
 
     render() {
+        var tab1_state;
+        var tab2_state;
+        var tab3_state;
+        var content;
+
+        if(this.state.currentTab == 1) {
+            content = <p>Overview</p>;
+            tab1_state = <NavItem><NavLink href="#" active onClick={this.tab1}>Overview</NavLink></NavItem>;
+        } else {
+            tab1_state = <NavItem><NavLink href="#" onClick={this.tab1}>Overview</NavLink></NavItem>;
+        }
+        if(this.state.currentTab == 2) {
+            content = <User_Feed />;
+            tab2_state = <NavItem>
+              <NavLink href="#" active onClick={this.tab2}>Paths</NavLink>
+            </NavItem>;
+        } else {
+            tab2_state = <NavItem>
+              <NavLink href="#" onClick={this.tab2}>Paths</NavLink>
+            </NavItem>;
+        }
+        if(this.state.currentTab == 3) {
+            content = <p>Settings</p>;
+            tab3_state = <NavItem>
+              <NavLink href="#" active onClick={this.tab3}>Settings</NavLink>
+            </NavItem>;
+        } else {
+            tab3_state = <NavItem>
+              <NavLink href="#" onClick={this.tab3}>Settings</NavLink>
+            </NavItem>;
+        }
+
+
+
         return (
           <div>
             <Media>
@@ -36,24 +85,19 @@ export default class Cover extends React.Component {
                     <h1>Hey {this.state.firstname}!</h1>
                     <div id="nav">
                         <Nav tabs>
-                            <NavItem>
-                              <NavLink href="#" active onClick={this.changeTab}>Link</NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink href="#" onClick={this.changeTab}>Link</NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink href="#" onClick={this.changeTab}>Another Link</NavLink>
-                            </NavItem>
+                            {tab1_state}
+                            {tab2_state}
+                            {tab3_state}
                         </Nav>
                     </div>
                     <br></br>
                     <div id="content">
                         <Row>
-                            <Col sm={{ size: 6, order: 2, offset: 1 }}>.col-sm-6 .col-sm-order-2 .col-sm-offset-2</Col>
+                            <Col sm={{ size: 11.5, order: 2, offset: 0.5 }}>
+                                {content}
+                            </Col>
                         </Row>
                     </div>
-                    <p>{this.state.currentTab}</p>
                 </Container>
               </Media>
               <br></br>
