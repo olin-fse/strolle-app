@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 
 import User_Feed from './User_Accounts/feed';
 import Messages from './User_Accounts/messages';
+import Settings from './User_Accounts/settings';
 
 
 export default class Cover extends React.Component {
@@ -14,8 +15,10 @@ export default class Cover extends React.Component {
 
         this.state = {
             loggedIn: true,
-            firstname: "Peter",
-            lastname: "Seger",
+            firstname: "Mark",
+            lastname: "Summerville",
+            email: "me@gmail.com",
+            city: "Boston",
             currentTab: 1
         };
 
@@ -47,9 +50,11 @@ export default class Cover extends React.Component {
         var tab2_state;
         var tab3_state;
         var content;
+        var title;
 
         if(this.state.currentTab == 1) {
             content = <Messages />;
+            title = <h2>Messages</h2>;
             tab1_state = <NavItem><NavLink href="#" active onClick={this.tab1}>Overview</NavLink></NavItem>;
         } else {
             tab1_state = <NavItem><NavLink href="#" onClick={this.tab1}>Overview</NavLink></NavItem>;
@@ -65,7 +70,14 @@ export default class Cover extends React.Component {
             </NavItem>;
         }
         if(this.state.currentTab == 3) {
-            content = <p>Settings</p>;
+            content = <Settings
+                edit={false}
+                firstname={this.state.firstname}
+                lastname={this.state.lastname}
+                email={this.state.email}
+                city={this.state.city}
+                />;
+            title = <h2>Settings</h2>;
             tab3_state = <NavItem>
               <NavLink href="#" active onClick={this.tab3}>Settings</NavLink>
             </NavItem>;
@@ -96,6 +108,7 @@ export default class Cover extends React.Component {
                     <div id="content">
                         <Row>
                             <Col sm={{ size: 11.5, order: 2, offset: 0.5 }}>
+                                {title}
                                 {content}
                             </Col>
                         </Row>
