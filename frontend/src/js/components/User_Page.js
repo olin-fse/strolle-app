@@ -1,10 +1,12 @@
 import React from 'react';
 import { Alert, Media, Container, Row, Col, Nav,
     NavItem, NavLink, Dropdown, DropdownItem,
-    DropdownToggle, DropdownMenu, Button } from 'reactstrap';
+    DropdownToggle, DropdownMenu, Button, Badge } from 'reactstrap';
 import { Link } from 'react-router';
 
 import User_Feed from './User_Accounts/feed';
+import Messages from './User_Accounts/messages';
+
 
 export default class Cover extends React.Component {
     constructor(props) {
@@ -47,7 +49,7 @@ export default class Cover extends React.Component {
         var content;
 
         if(this.state.currentTab == 1) {
-            content = <p>Overview</p>;
+            content = <Messages />;
             tab1_state = <NavItem><NavLink href="#" active onClick={this.tab1}>Overview</NavLink></NavItem>;
         } else {
             tab1_state = <NavItem><NavLink href="#" onClick={this.tab1}>Overview</NavLink></NavItem>;
