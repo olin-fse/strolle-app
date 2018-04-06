@@ -6,6 +6,12 @@ var PathService = require('./PathService');
 var router = express.Router();
 var service = new PathService();
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+
+
+
 router.route('/paths').post(function(req, res) {
   service.createPath(req.body, function(err) {
     if (err == null) {
@@ -44,5 +50,32 @@ router.route('/users/:userID').get(function(req, res) {
         }
     });
 })
+
+
+router.route('/login').post(passport.authenticate('local', { successRedirect: '/',
+                                                             failureRedirect: '/login',
+                                                             failureFlash: false})
+)
+
+
+
+// Passport Authentication Stuff
+passport.use(new LocalStrategy(
+    function(email, password, done) {
+        console.log('Here!');
+        User.findOne({email: email}, function(err, user) {
+            if(err) {
+                return done(err);
+            }
+            if(!user) {
+                return done(null, false, {message: "Incorrect Username."});
+            }
+            if(!user.validPassword(password)) {
+                return done(null, false, {message: "Incorrect Password."});
+            }
+            return done(null, user);
+        });
+    }
+));
 
 module.exports = router;
