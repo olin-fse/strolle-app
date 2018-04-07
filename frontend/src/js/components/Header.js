@@ -26,8 +26,7 @@ export default class Header extends React.Component {
     this.state = {
       isOpen: false,
       isLoggedIn: this.props.loggedIn,
-      unreadMessages: 2,
-      redirect: false
+      unreadMessages: 2
     };
   }
   toggle() {
@@ -39,7 +38,7 @@ export default class Header extends React.Component {
 
   handleLogin = (e) => {
       e.preventDefault();
-      console.log('Here');
+      console.log('handleLogin');
       request
           .post('/api/login')
           .then(
@@ -51,16 +50,6 @@ export default class Header extends React.Component {
       var loggedInButton;
       var signUpButton;
       var messages;
-
-      if(this.state.redirect) {
-          return(
-              <Router history={browserHistory}>
-                  <Redirect from='/' to='/login'/>
-                  <Route path='login' component={Login}/>
-              </Router>
-          )
-      }
-
 
       if(this.state.isLoggedIn) {
           loggedInButton = <NavLink href="/api/login" onClick={this.handleLogin}><Button outline color="primary" id="login">Logout</Button></NavLink>;
