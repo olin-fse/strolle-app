@@ -5,10 +5,6 @@ var bodyParser = require('body-parser');
 var app = express();
 var mysql = require('mysql');
 var router = require('./API/api');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
-var session    = require('express-session');
 
 
 var dbConfig = require('./db.config.js')(process.env.NODE_ENV);
@@ -40,11 +36,6 @@ app.close = function() {
   con.destroy();
   console.log("DB disconnected");
 }
-
-app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
 // listen for INT signal e.g. Ctrl-C
 process.on('SIGINT', app.close);
