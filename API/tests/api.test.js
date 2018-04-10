@@ -12,60 +12,76 @@ var example = {
   description : "This was fun",
   location_name : "Boston",
   lat : 25.3,
-  lng : 23.99
+  lng : 23.99,
+  userID: 5
 };
 
 var example_user = {
-  name : "Billy Bob",
-  description : "I like my farm",
-  photo: "cow.png"
-}
+  first : "Billy",
+  last: "Bob",
+  blurb : "I like my farm",
+  photo: "cow.png",
+  email: "bbob@farmlovers.com",
+  pass: "ilovemycow"
+};
 
 var db;
 
-describe('/api/paths', function() {
+describe('/api', function() {
   before(function(done) {
     db = mysql.createConnection(dbConfig);
     done();
   });
 
   after(function(done) {
+    console.log('DONE ALL');
     app.close();
     done();
   });
 
-  it('/GET /api/paths', async function() {
+  it('/POST /api/paths', async function() {
     try {
-      const res = await request(app).post('/api/paths').send(example);
-      expect(res.body.status).to.not.equal(null);
-      expect(res.statusCode).to.equal(200);
+      request(app)
+        .post('/api/paths')
+        .send(example)
+        .then(res => {
+          expect(res.statusCode).to.equal(200);
+          expect(res.body.affectedRows).to.equal(1);
+          done();
+        });
     } catch (ex) {
       throw ex;
     }
   });
 
-  it('/POST /api/paths/:pathID', function() {
-    var t = example.title;
-    var loc = example.location_name;
-    var d = example.description;
-    var lt = example.lat;
-    var ln = example.lng;
-    var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln})`;
-
-    const testFn = async function(id) {
-      try {
-        const res = await request(app).get(`/paths/${id}`);
-        expect(res._data).to.equal(example);
-      } catch (ex) {
-        throw ex;
-      }
-    }
-
-    db.query(walk_insert, function (err, result) {
-      if (err) throw err;
-      testFn(result.insertId);
-    });
-  });
+  // it('/GET /api/paths/:pathID', function(done) {
+  //   var t = example.title;
+  //   var loc = example.location_name;
+  //   var d = example.description;
+  //   var lt = example.lat;
+  //   var ln = example.lng;
+  //   var uid = example.userID;
+  //   var walk_insert = `INSERT INTO paths (title, location_name, description, latitude, longitude, userID) VALUES ("${t}", "${loc}", "${d}", ${lt}, ${ln}, ${uid})`;
+  //
+  //   const testFn = async function(id) {
+  //     try {
+  //       request(app)
+  //         .get(`/paths/${id}`)
+  //         .then(res => {
+  //           console.log(res.body);
+  //           expect(res._data).to.equal(example);
+  //           done();
+  //       });
+  //     } catch (ex) {
+  //       throw ex;
+  //     }
+  //   }
+  //
+  //   db.query(walk_insert, function (err, result) {
+  //     if (err) throw err;
+  //     testFn(result.insertId);
+  //   });
+  // });
 
   it('/DELETE /api/paths/:pathID', async function() {
     try {
@@ -75,5 +91,29 @@ describe('/api/paths', function() {
     } catch (ex) {
       throw ex;
     }
+  });
+
+  it('/POST /api/users/:userID', function() {
+    var f = example_user.first;
+    var l = example_user.last;
+    var blrb = example_user.blurb;
+    var ph = example_user.photo;
+    var em = example_user.email;
+    var ps = example_user.pass;
+    var user_insert = `INSERT INTO users (first, last, blurb, photo, email, pass) VALUES ("${f}", "${l}", "${blrb}", "${ph}", "${em}", "${ps}")`;
+
+    const testFn = async function(id) {
+      try {
+        const res = await request(app).get(`/users/${id}`);
+        expect(res._data).to.equal(example_user);
+      } catch (ex) {
+        throw ex;
+      }
+    }
+
+    db.query(user_insert, function (err, result) {
+      if (err) throw err;
+      testFn(result.insertId);
+    });
   });
 });
