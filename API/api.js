@@ -1,5 +1,3 @@
-var app = require('./../app');
-
 var express = require('express');
 var path = require('path');
 var mysql = require('mysql');
@@ -10,12 +8,11 @@ var service = new PathService();
 
 // Authentication Modules
 var passport = require('passport');
+var sess = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-var sess = require('express-session');
+
 var crypto = require('crypto');
-var Store = require('express-session').Store;
-var BetterMemoryStore = require(__dirname + '/memory');
 
 
 router.route('/paths').post(function(req, res) {
@@ -99,19 +96,6 @@ router.route('/login').post(passport.authenticate('local', { successRedirect: '/
 
 
 // Passport Authentication Stuff
-var store = new BetterMemoryStore({expires: 60 * 60 * 1000, debug: true});
-
-app.use(sess({
-    name: "JESSION",
-    secret: "MYSECRET", //TODO change
-    store: store,
-    resave: true,
-    saveUninitialized: true
-}));
-
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use('local', new LocalStrategy({
     emailField: 'email',
@@ -123,11 +107,11 @@ passport.use('local', new LocalStrategy({
     }
     // var salt = '22adc9ea14a7a14fe5888e579db67e302ec54892'; TODO move to frontend
     // password = password + salt;
-    if(checkUserByEmail(email, res)) {      //TODO write
-        if(res[0] != email) {
+    if(service.getUserByEmail(email, res)) {      //TODO write
+        if(res[5] != email) {
             return done(null, false, req.flash('message', 'User does not exist'));
         }
-        if(res[2] != password) {
+        if(res[6] != password) {
             return done(null, false, req.flash('message', 'Wrong Password'));
         }
         return done(null, res)
@@ -143,5 +127,4 @@ passport.deserializeUser(function(id, done) {
     done(err, res);
 })
 
-module.exports = db;
 module.exports = router;

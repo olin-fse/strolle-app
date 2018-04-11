@@ -2,21 +2,75 @@ import React from 'react';
 import { Col, Component, Card, CardImg, CardText, CardBody,
     CardTitle, CardLink, CardSubtitle, Button, Form,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
-import { Link } from 'react-router';
 // import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
-
-
+var bcrypt = require('bcrypt');
+import {Cover} from './User_Page';
+import { Link, Redirect, Route, Router, browserHistory } from 'react-router';
+const request = require('superagent');
 
 
 class Signup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+            route: ''
+        };
+    }
+
+
+    handleSubmit = (e) => {
+        e.preventDefault;
+
+        let firstname = e.target[0].value;
+        let lastname = e.target[1].value;
+        let email = e.target[2].value;
+        let password = e.target[3].value;
+
+        let salt = '22adc9ea14a7a14fe5888e579db67e302ec54892';
+        let hashedPassword = bcrypt.hashSync(password, salt);
+
+        request
+            .post('api/users')
+            .send({
+                first: firstname,
+                last: lastname,
+                blurb: "",
+                photo: "",
+                email: email,
+                pass: hashedPassword
+            })
+            .then((res) => {
+                const route = "/users/" + res.body.insertId;
+                this.setState(
+                    {
+                        redirect: true,
+                        route: route
+                    }
+                )
+            })
+    }
+
+
     render() {
+        const redirect = this.state.redirect;
+        if(redirect) {
+            return(
+                <Router history={browserHistory}>
+                    <Redirect from="/signup" to={this.state.route}/>
+                    <Route path='/users/:userId' component={Cover}/>
+                </Router>
+            )
+        }
+
+
         return (
             <div>
                 <h1>Sign Up</h1>
                   <Card>
                         <CardBody>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <FormGroup row>
                                   <Label for="firstName" sm={2}>First Name</Label>
                                   <Col sm={10}>

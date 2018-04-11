@@ -45,6 +45,7 @@
     "reactstrap": "5.0.0-beta",
     "sass-loader": "6.0.6",
     "sequelize": "^4.37.6",
+    "session-memory-store": "^0.2.2",
     "style-loader": "0.20.1",
     "superagent": "^3.8.2",
     "webpack": "3.10.0",

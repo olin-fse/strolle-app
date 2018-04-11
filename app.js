@@ -7,6 +7,17 @@ var mysql = require('mysql');
 var router = require('./API/api');
 
 
+var sess = require('express-session');
+var Store = require('express-session').Store;
+var BetterMemoryStore = require('session-memory-store')(sess);
+var flash = require('connect-flash');
+var passport = require('passport');
+
+
+var store = new BetterMemoryStore({expires: 60 * 60 * 1000, debug: true});
+
+
+
 var dbConfig = require('./db.config.js')(process.env.NODE_ENV);
 
 var con = mysql.createConnection(dbConfig);
@@ -36,6 +47,21 @@ app.close = function() {
   con.destroy();
   console.log("DB disconnected");
 }
+
+
+//Passport Stuff
+app.use(sess({
+    name: "JESSION",
+    secret: "MYSECRET", //TODO change
+    store: store,
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // listen for INT signal e.g. Ctrl-C
 //process.on('SIGINT', app.close);

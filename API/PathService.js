@@ -62,7 +62,7 @@ PathService.prototype.updateUser = function(data, cb) {
 }
 
 PathService.prototype.getUserByEmail = function(email, cb) {
-  var stmt = `SELECT first, last, blurb, photo FROM users WHERE email = "${email}"`;
+  var stmt = `SELECT * FROM users WHERE email = "${email}"`;
   this.con.query(stmt, function(err, result) {
     if (err) return cb(err);
     cb(result[0]);
