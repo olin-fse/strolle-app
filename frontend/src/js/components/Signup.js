@@ -4,7 +4,6 @@ import { Col, Component, Card, CardImg, CardText, CardBody,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 // import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
-var bcrypt = require('bcrypt');
 import {Cover} from './User_Page';
 import { Link, Redirect, Route, Router, browserHistory } from 'react-router';
 const request = require('superagent');
@@ -28,8 +27,6 @@ class Signup extends React.Component {
         let email = e.target[2].value;
         let password = e.target[3].value;
 
-        let salt = '22adc9ea14a7a14fe5888e579db67e302ec54892';
-        let hashedPassword = bcrypt.hashSync(password, salt);
 
         request
             .post('api/users')
@@ -39,9 +36,10 @@ class Signup extends React.Component {
                 blurb: "",
                 photo: "",
                 email: email,
-                pass: hashedPassword
+                pass: password
             })
             .then((res) => {
+                console.log(res);
                 const route = "/users/" + res.body.insertId;
                 this.setState(
                     {
@@ -55,14 +53,14 @@ class Signup extends React.Component {
 
     render() {
         const redirect = this.state.redirect;
-        if(redirect) {
-            return(
-                <Router history={browserHistory}>
-                    <Redirect from="/signup" to={this.state.route}/>
-                    <Route path='/users/:userId' component={Cover}/>
-                </Router>
-            )
-        }
+        // if(redirect) {
+        //     return(
+        //         <Router history={browserHistory}>
+        //             <Redirect from="/signup" to={this.state.route}/>
+        //             <Route path='/users/:userId' component={Cover}/>
+        //         </Router>
+        //     )
+        // }
 
 
         return (
