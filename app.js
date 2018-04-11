@@ -38,6 +38,6 @@ app.close = function() {
 }
 
 // listen for INT signal e.g. Ctrl-C
-process.on('SIGINT', app.close);
+//process.on('SIGINT', app.close);
 
 module.exports = app;
