@@ -22,6 +22,7 @@ addons:
 
 script:
   - cd frontend/ && npm run build && cd ..
+  - export NODE_ENV=TEST
   - node server.js &
   - npm run test
 

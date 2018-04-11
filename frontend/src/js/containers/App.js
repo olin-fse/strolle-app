@@ -11,6 +11,7 @@ import Base from '../components/Base';
 import Create from '../components/Create_Run';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
+import User_Page from '../components/User_Page';
 
 var Type = require('type-of-is');               //TODO remove before deploy
 
@@ -21,7 +22,9 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="container">
-                    <Header />
+                    <Header
+                        loggedIn={false}
+                    />
                     <Cover />
 
                     <Feed
@@ -73,7 +76,9 @@ class Path extends Component {
         return (
             <div>
                 <div className='container'>
-                    <Header />
+                    <Header
+                        loggedIn={false}
+                    />
                     <Feed
                         pathid = {this.state.pathid}
                         city={this.state.city}
@@ -97,7 +102,9 @@ class Create_Path extends Component {
         return (
             <div className="Create">
                 <div className='container'>
-                    <Header />
+                    <Header
+                        loggedIn={false}
+                    />
                     <Create />
                 </div>
                 <div>
@@ -113,7 +120,9 @@ class signupComp extends Component {
         return (
             <div>
                 <div className='container'>
-                    <Header />
+                    <Header
+                        loggedIn={false}
+                    />
                     <Signup />
                 </div>
                 <div>
@@ -129,12 +138,42 @@ class loginComp extends Component {
         return (
             <div>
                 <div className='container'>
-                    <Header />
+                    <Header
+                        loggedIn={false}
+                    />
                     <Login />
                 </div>
                 <div>
                     <Base />
                 </div>
+            </div>
+        )
+    }
+}
+
+class User extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {};
+    //     request
+    //         .get(`/api/users/${props.params.id}`)
+    //         .then(res => {
+    //             this.setState({
+    //
+    //             });
+    //         });
+    // }
+
+    render() {
+        return (
+            <div>
+                <div className='container'>
+                    <Header
+                        loggedIn={true}
+                    />
+                    <User_Page />
+                </div>
+                <Base />
             </div>
         )
     }
@@ -146,5 +185,6 @@ module.exports = {
     Path,
     Create_Path,
     signupComp,
-    loginComp
+    loginComp,
+    User
 };

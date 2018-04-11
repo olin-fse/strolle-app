@@ -6,6 +6,7 @@ var app = express();
 var mysql = require('mysql');
 var router = require('./API/api');
 
+
 var dbConfig = require('./db.config.js')(process.env.NODE_ENV);
 
 var con = mysql.createConnection(dbConfig);
@@ -28,7 +29,7 @@ app.get('*', function(request, response) {
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("DB connected");
+  console.log("DB connected to " + process.env.NODE_ENV);
 });
 
 app.close = function() {
