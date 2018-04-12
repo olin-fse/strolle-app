@@ -1,8 +1,8 @@
-USE strolle_app;
+USE strolle_db;
 ALTER TABLE paths ADD userID INT;
 ALTER TABLE paths ADD dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 CREATE TABLE users (ID int NOT NULL AUTO_INCREMENT,
   first TEXT, last TEXT, blurb TEXT,
-  photo TEXT, email TEXT, pass TEXT,
+  photo TEXT, email TEXT, pass TEXT, sessionKey TEXT,
   primary key (ID)
 );
