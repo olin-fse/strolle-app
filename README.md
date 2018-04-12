@@ -29,6 +29,11 @@ $ mysql -u root < test_schema.sql
 Run the following code in command line:
 $ mysql -u root < migration_testdb.sql
 
+### second migration
+$ myslql -u root < migration2_testdb.sql
+
+## Real Database Migration
+$ mysql --host 35.231.72.92 -u root -p < migration_db.sql
 ## Building and Running the App
 ### Installs
 Make sure you have all the installs by installing both the backend and front end requirements.

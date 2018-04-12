@@ -22,7 +22,8 @@ var example_user = {
   blurb : "I like my farm",
   photo: "cow.png",
   email: "bbob@farmlovers.com",
-  pass: "ilovemycow"
+  pass: "ilovemycow",
+  sessionKey: "blahblahblah"
 };
 
 var db;
@@ -100,7 +101,8 @@ describe('/api', function() {
     var ph = example_user.photo;
     var em = example_user.email;
     var ps = example_user.pass;
-    var user_insert = `INSERT INTO users (first, last, blurb, photo, email, pass) VALUES ("${f}", "${l}", "${blrb}", "${ph}", "${em}", "${ps}")`;
+    var s = example_user.sessionKEy;
+    var user_insert = `INSERT INTO users (first, last, blurb, photo, email, pass) VALUES ("${f}", "${l}", "${blrb}", "${ph}", "${em}", "${ps}", "${s}")`;
 
     const testFn = async function(id) {
       try {

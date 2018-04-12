@@ -30,8 +30,8 @@ PathService.prototype.deletePath = function(id, cb) {
 }
 
 PathService.prototype.createUser = function(data, cb) {
-  var stmt = 'INSERT INTO users (first, last, blurb, photo, email, pass) VALUES' +
-    `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${data.pass}")`;
+  var stmt = 'INSERT INTO users (first, last, blurb, photo, email, pass, sessionKey) VALUES' +
+    `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${data.pass}", , "${data.sessionKey}")`;
   this.con.query(stmt, function(err, result) {
     if (err) cb(err);
     cb(result);
