@@ -56,7 +56,8 @@ class Create extends React.Component {
                 description : desc,
                 location_name : search,
                 lat : this.state.latitude,
-                lng : this.state.longitude
+                lng : this.state.longitude,
+                userID: "69"
             })
             .then((res) => {
                 // console.log("Result: " + res.body.insertId);

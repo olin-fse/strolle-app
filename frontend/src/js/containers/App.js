@@ -171,7 +171,9 @@ class User extends Component {
                     <Header
                         loggedIn={true}
                     />
-                    <User_Page />
+                    <User_Page
+                        loggedIn={true}
+                    />
                 </div>
                 <Base />
             </div>

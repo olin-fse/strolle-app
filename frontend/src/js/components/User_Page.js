@@ -14,7 +14,7 @@ export default class Cover extends React.Component {
         super(props);
 
         this.state = {
-            loggedIn: true,
+            loggedIn: this.props.loggedIn,
             firstname: "Mark",
             lastname: "Summerville",
             email: "me@gmail.com",

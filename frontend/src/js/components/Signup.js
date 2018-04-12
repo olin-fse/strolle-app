@@ -4,7 +4,7 @@ import { Col, Component, Card, CardImg, CardText, CardBody,
     FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 // import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import Dimensions from 'react-dimensions';
-import {Cover} from './User_Page';
+import {User, App} from './../containers/App';
 import { Link, Redirect, Route, Router, browserHistory } from 'react-router';
 const request = require('superagent');
 
@@ -39,7 +39,7 @@ class Signup extends React.Component {
                 pass: password
             })
             .then((res) => {
-                console.log(res);
+                console.log(res.body.insertId);
                 const route = "/users/" + res.body.insertId;
                 this.setState(
                     {
@@ -47,20 +47,21 @@ class Signup extends React.Component {
                         route: route
                     }
                 )
-            })
+            });
     }
 
 
     render() {
         const redirect = this.state.redirect;
-        // if(redirect) {
-        //     return(
-        //         <Router history={browserHistory}>
-        //             <Redirect from="/signup" to={this.state.route}/>
-        //             <Route path='/users/:userId' component={Cover}/>
-        //         </Router>
-        //     )
-        // }
+        console.log(redirect);
+        if(redirect) {
+            return(
+                <Router history={browserHistory}>
+                    <Redirect from="/signup" to={this.state.route}/>
+                    <Route path='/users/:userid' component={User}/>
+                </Router>
+            );
+        }
 
 
         return (
