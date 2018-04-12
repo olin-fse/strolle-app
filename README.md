@@ -27,7 +27,7 @@ $ mysql -u root < test_schema.sql
 
 ## Local Test Database Migration
 Run the following code in command line:
-$ myslql -u root < migration_testdb.sql
+$ mysql -u root < migration_testdb.sql
 
 ## Building and Running the App
 ### Installs
