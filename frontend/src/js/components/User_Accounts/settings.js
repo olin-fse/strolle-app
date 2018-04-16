@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, Button, Badge, CardTitle,
     CardText, Row, Col, Table, Form,
     FormGroup, Label, Input, FormText} from "reactstrap";
+const request = require('superagent');
+
 
 class Settings extends Component{
     constructor(props) {
@@ -20,11 +22,49 @@ class Settings extends Component{
         this.setState({edit: true})
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        let firstname = e.target[0].value;
+        let lastname = e.target[1].value;
+        let email = e.target[2].value;
+
+        if(firstname == this.state.firstname || firstname.length < 1) {
+            firstname = this.state.firstname;
+        }
+        if(lastname == this.state.lastname || lastname.length < 1) {
+            lastname = this.state.lastname;
+        }
+        if(email == this.state.email || email.length < 1) {
+            console.log("HERE");
+            email = this.state.email;
+        }
+
+
+        request
+            .post('/api/updateUsers')
+            .send({
+                first: firstname,
+                last: lastname,
+                email: email
+            })
+            .then((res) => {
+                // console.log(res);
+                this.setState(
+                    {
+                        edit: false,
+                        firstname: 'CHANGED'
+                    }
+                )
+                location.reload();      //Shitty way of doing it
+            });
+    }
+
     render() {
         if(this.state.edit) {
             return(
                 <div>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Table>
                             <tbody>
                               <tr>

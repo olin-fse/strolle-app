@@ -8,28 +8,30 @@ import User_Feed from './User_Accounts/feed';
 import Messages from './User_Accounts/messages';
 import Settings from './User_Accounts/settings';
 
+const request = require('superagent');
+
+
 
 export default class Cover extends React.Component {
     constructor(props) {
+
+
         super(props);
-
-        this.state = {
-            loggedIn: this.props.loggedIn,
-            firstname: "Mark",
-            lastname: "Summerville",
-            email: "me@gmail.com",
-            city: "Boston",
-            currentTab: 1
-        };
-
+        this.state = {};
+        request
+            .get(`/api/users/${props.id}`)
+            .then(res => {
+                console.log(res.body);
+                this.setState({
+                    loggedIn: true,
+                    firstname: res.body.first,
+                    lastname: res.body.last,
+                    email: res.body.email,
+                    city: "Boston",
+                    currentTab: 1
+                });
+            });
     }
-
-    // changeTab = (e) => {
-    //     e.preventDefault();
-    //     console.log('The link was clicked.');
-    //     console.log(e);
-    //     this.setState({currentTab: this.state.currentTab+1})
-    // }
 
     tab1 = (e) => {
         e.preventDefault();
@@ -43,6 +45,7 @@ export default class Cover extends React.Component {
         e.preventDefault();
         this.setState({currentTab: 3})
     }
+
 
 
     render() {

@@ -64,7 +64,9 @@ router.route('/users/:userID').get(function(req, res) {
     });
 })
 
-router.route('/users').put(function(req,res) {
+router.route('/updateUsers').post(function(req,res) {
+    console.log('HERE');
+    console.log(req.body);
     service.updateUser(req.body, function(stat) {
       if (stat == null) {
         return res.sendStatus(400);

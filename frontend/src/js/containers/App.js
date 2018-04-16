@@ -152,17 +152,12 @@ class loginComp extends Component {
 }
 
 class User extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    //     request
-    //         .get(`/api/users/${props.params.id}`)
-    //         .then(res => {
-    //             this.setState({
-    //
-    //             });
-    //         });
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {id: this.props.params.id};
+    }
+
+
 
     render() {
         return (
@@ -172,7 +167,7 @@ class User extends Component {
                         loggedIn={true}
                     />
                     <User_Page
-                        loggedIn={true}
+                        id={this.state.id}
                     />
                 </div>
                 <Base />

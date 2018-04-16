@@ -20,7 +20,7 @@ class Signup extends React.Component {
 
 
     handleSubmit = (e) => {
-        e.preventDefault;
+        e.preventDefault();
 
         let firstname = e.target[0].value;
         let lastname = e.target[1].value;
@@ -29,7 +29,7 @@ class Signup extends React.Component {
 
 
         request
-            .post('api/users')
+            .post('api/updateUsers')
             .send({
                 first: firstname,
                 last: lastname,

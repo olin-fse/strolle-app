@@ -39,7 +39,7 @@ PathService.prototype.createUser = function(data, cb) {
 }
 
 PathService.prototype.getUserByID = function(id, cb) {
-  var stmt = `SELECT first, last, blurb, photo FROM users WHERE ID =` + id;
+  var stmt = `SELECT first, last, blurb, photo, email FROM users WHERE ID =` + id;
   this.con.query(stmt, function(err, result) {
     if (err) return cb(err);
     cb(result[0]);
