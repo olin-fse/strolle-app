@@ -1,0 +1,16 @@
+version: '3'
+services:
+    web:
+        build: .
+        ports:
+         - "3000:3000"
+    mysql:
+        image: "mysql:latest"
+        container_name: "DB.dev"
+        volumes:
+         - DB_Setup:/test_schema.sql
+        environment:
+          MYSQL_DATABASE: "strolle_test"
+          MYSQL_ROOT_PASSWORD: ""
+        ports:
+         - "3306:3306"

@@ -12,6 +12,7 @@ EXPOSE 80
 
 EXPOSE 3000
 
+# Build Frontend
 CMD ["cd", "frontend/"]
 
 CMD ["npm", "install"]
@@ -20,6 +21,5 @@ CMD ["npm", "run", "build"]
 
 CMD ["cd", ".."]
 
-CMD ["export", "NODE_ENV=PROD"]
-
+# Run App
 CMD ["npm", "run", "start"]
