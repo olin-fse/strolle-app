@@ -21,5 +21,7 @@ CMD ["npm", "run", "build"]
 
 CMD ["cd", ".."]
 
+ENV NODE_ENV=TEST
+
 # Run App
 CMD ["npm", "run", "start"]
