@@ -9,3 +9,8 @@ CREATE TABLE paths (ID int NOT NULL AUTO_INCREMENT,
   longitude FLOAT(50,25),
   primary key (ID)
 );
+CREATE TABLE users (ID int NOT NULL AUTO_INCREMENT,
+  first TEXT, last TEXT, blurb TEXT,
+  photo TEXT, email TEXT, pass TEXT,
+  primary key (ID)
+);
