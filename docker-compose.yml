@@ -1,15 +1,10 @@
 version: '3'
 services:
-    web:
-        build: .
-        ports:
-         - "3000:3000"
     database:
         image: mysql
         container_name: "DB1.dev"
         volumes:
-         - ./DB_Setup/dump.sql:/tmp/dbcreation.sql
-         - ./DB_Setup/import.sh:/tmp/import.sh
+         - ./DB_STUFF:/docker-entrypoint-initdb.d
         environment:
           MYSQL_DATABASE: "strolle_test"
           MYSQL_USER: "strolle_app_test"
@@ -17,4 +12,8 @@ services:
           MYSQL_ROOT_PASSWORD: ""
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
         ports:
-         - "3307:3306"
+         - "3306:3306"
+    web:
+        build: .
+        ports:
+         - "3000:3000"
