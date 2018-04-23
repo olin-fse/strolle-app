@@ -30,7 +30,7 @@ Run the following code in command line:
 $ mysql -u root < migration_testdb.sql
 
 ### second migration
-$ myslql -u root < migration2_testdb.sql
+$ mysql -u root < migration2_testdb.sql
 
 ## Real Database Migration
 $ mysql --host 35.231.72.92 -u root -p < migration_db.sql

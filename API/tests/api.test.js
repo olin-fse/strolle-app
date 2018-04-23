@@ -101,7 +101,7 @@ describe('/api', function() {
     var ph = example_user.photo;
     var em = example_user.email;
     var ps = example_user.pass;
-    var s = example_user.sessionKEy;
+    var s = example_user.sessionKey;
     var user_insert = `INSERT INTO users (first, last, blurb, photo, email, pass) VALUES ("${f}", "${l}", "${blrb}", "${ph}", "${em}", "${ps}", "${s}")`;
 
     const testFn = async function(id) {

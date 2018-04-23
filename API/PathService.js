@@ -31,7 +31,7 @@ PathService.prototype.deletePath = function(id, cb) {
 
 PathService.prototype.createUser = function(data, cb) {
   var stmt = 'INSERT INTO users (first, last, blurb, photo, email, pass, sessionKey) VALUES' +
-    `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${data.pass}", , "${data.sessionKey}")`;
+    `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${data.pass}", "${data.sessionKey}")`;
   this.con.query(stmt, function(err, result) {
     if (err) cb(err);
     cb(result);
@@ -62,7 +62,7 @@ PathService.prototype.updateUser = function(data, cb) {
 }
 
 PathService.prototype.getUserByEmail = function(email, cb) {
-  var stmt = `SELECT * FROM users WHERE email = "${email}"`;
+  var stmt = `SELECT first, last, blurb, photo FROM users WHERE email = "${email}"`;
   this.con.query(stmt, function(err, result) {
     if (err) return cb(err);
     cb(result[0]);
