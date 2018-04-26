@@ -5,12 +5,13 @@ services:
         container_name: "DB1.dev"
         volumes:
          - ./DB_STUFF:/docker-entrypoint-initdb.d
+        command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
-          MYSQL_DATABASE: "strolle_test"
-          MYSQL_USER: "strolle_app_test"
-          MYSQL_PASSWORD: "walk"
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+          MYSQL_DATABASE: strolle_test
+          MYSQL_USER: strolle_app_test
+          MYSQL_PASSWORD: walk
+          MYSQL_ROOT_PASSWORD: "password"
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         ports:
          - "3306:3306"
     web:
