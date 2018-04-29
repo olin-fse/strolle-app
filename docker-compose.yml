@@ -16,5 +16,9 @@ services:
          - "3306:3306"
     web:
         build: .
+        environment:
+            NODE_ENV: TEST
         ports:
          - "3000:3000"
+        depends_on:
+            - "database"
