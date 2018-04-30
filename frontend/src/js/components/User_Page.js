@@ -14,8 +14,6 @@ const request = require('superagent');
 
 export default class Cover extends React.Component {
     constructor(props) {
-
-
         super(props);
         this.state = {};
         request

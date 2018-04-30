@@ -66,7 +66,7 @@ router.route('/users/:userID').get(function(req, res) {
 
 router.route('/updateUsers').post(function(req,res) {
     console.log('HERE');
-    console.log(req.body);
+    // console.log(req.body);
     service.updateUser(req.body, function(stat) {
       if (stat == null) {
         return res.sendStatus(400);
@@ -108,7 +108,6 @@ passport.use('local', new LocalStrategy({
         return done(null, false, req.flash('message', 'All fields required.'));
     }
     // var salt = '22adc9ea14a7a14fe5888e579db67e302ec54892'; TODO move to frontend
-    // password = password + salt;
     if(service.getUserByEmail(email, res)) {      //TODO write
         if(res[5] != email) {
             return done(null, false, req.flash('message', 'User does not exist'));

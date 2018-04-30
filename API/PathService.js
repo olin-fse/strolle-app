@@ -1,5 +1,8 @@
 var mysql = require('mysql');
+var pbkdf2 = require('pbkdf2')
 var dbconfig = require('../db.config.js')(process.env.NODE_ENV);
+var salt = '22adc9ea14a7a14fe5888e579db67e302ec54892';
+
 function PathService() {
   this.con = mysql.createConnection(dbconfig);
 }
@@ -30,12 +33,14 @@ PathService.prototype.deletePath = function(id, cb) {
 }
 
 PathService.prototype.createUser = function(data, cb) {
-  var stmt = 'INSERT INTO users (first, last, blurb, photo, email, pass) VALUES' +
-    `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${data.pass}")`;
-  this.con.query(stmt, function(err, result) {
+    var derivedKey = pbkdf2.pbkdf2Sync(data.pass, salt, 1, 32, 'sha512');
+    console.log(derivedKey.toString('hex'));
+    var stmt = 'INSERT INTO users (first, last, blurb, photo, email, pass) VALUES' +
+        `("${data.first}", "${data.last}", "${data.blurb}", "${data.photo}", "${data.email}", "${derivedKey.toString('hex')}")`;
+    this.con.query(stmt, function(err, result) {
     if (err) cb(err);
-    cb(result);
-  });
+        cb(result);
+    });
 }
 
 PathService.prototype.getUserByID = function(id, cb) {
@@ -68,4 +73,5 @@ PathService.prototype.getUserByEmail = function(email, cb) {
     cb(result[0]);
   });
 }
+
 module.exports = PathService;

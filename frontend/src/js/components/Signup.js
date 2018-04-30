@@ -29,7 +29,7 @@ class Signup extends React.Component {
 
 
         request
-            .post('api/updateUsers')
+            .post('api/users')
             .send({
                 first: firstname,
                 last: lastname,

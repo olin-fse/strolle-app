@@ -1,9 +1,9 @@
 module.exports = function(NODE_ENV) {
   switch (NODE_ENV) {
     case 'TEST': return {
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'password',
+        host: 'localhost',
+        user: 'strolle_app',
+        password: 'walk',
         database: 'strolle_test'
       };
     case 'PROD': return {
